@@ -27,11 +27,11 @@ build({
     define: { CDN: true },
 })
 
-//let hash = crypto.randomBytes(4).toString('hex');
+let hash = crypto.randomBytes(4).toString('hex');
 
-//fs.writeFileSync(__dirname+'/../dist/manifest.json', `
-//{"/livewire.js":"${hash}"}
-//`)
+fs.writeFileSync(__dirname+'/../dist/manifest-csp.json', `
+{"/livewire-csp.js":"${hash}"}
+`)
 
 // Build a minified version.
 build({
