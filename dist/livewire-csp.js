@@ -16,10 +16,7 @@
     }
     return to;
   };
-  var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(
-    isNodeMode || !mod || !mod.__esModule ? __defProp(target, "default", { value: mod, enumerable: true }) : target,
-    mod
-  ));
+  var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(isNodeMode || !mod || !mod.__esModule ? __defProp(target, "default", { value: mod, enumerable: true }) : target, mod));
 
   // node_modules/nprogress/nprogress.js
   var require_nprogress = __commonJS({
@@ -60,12 +57,12 @@
         };
         NProgress2.status = null;
         NProgress2.set = function(n) {
-          var started2 = NProgress2.isStarted();
+          var started3 = NProgress2.isStarted();
           n = clamp2(n, Settings.minimum, 1);
           NProgress2.status = n === 1 ? null : n;
-          var progress = NProgress2.render(!started2), bar = progress.querySelector(Settings.barSelector), speed = Settings.speed, ease = Settings.easing;
+          var progress = NProgress2.render(!started3), bar = progress.querySelector(Settings.barSelector), speed = Settings.speed, ease = Settings.easing;
           progress.offsetWidth;
-          queue2(function(next) {
+          queue3(function(next) {
             if (Settings.positionUsing === "")
               Settings.positionUsing = NProgress2.getPositioningCSS();
             css(bar, barPositionCSS(n, speed, ease));
@@ -216,7 +213,7 @@
           barCSS.transition = "all " + speed + "ms " + ease;
           return barCSS;
         }
-        var queue2 = function() {
+        var queue3 = function() {
           var pending = [];
           function next() {
             var fn = pending.shift();
@@ -340,14 +337,12 @@
     }
   };
   function dispatch(target, name, detail = {}, bubbles = true) {
-    target.dispatchEvent(
-      new CustomEvent(name, {
-        detail,
-        bubbles,
-        composed: true,
-        cancelable: true
-      })
-    );
+    target.dispatchEvent(new CustomEvent(name, {
+      detail,
+      bubbles,
+      composed: true,
+      cancelable: true
+    }));
   }
   function listen(target, name, handler4) {
     target.addEventListener(name, handler4);
@@ -474,23 +469,21 @@
   }
   function handleFileUpload(el, property, component, cleanup2) {
     let manager = getUploadManager(component);
-    let start3 = () => el.dispatchEvent(new CustomEvent("livewire-upload-start", { bubbles: true, detail: { id: component.id, property } }));
+    let start4 = () => el.dispatchEvent(new CustomEvent("livewire-upload-start", { bubbles: true, detail: { id: component.id, property } }));
     let finish = () => el.dispatchEvent(new CustomEvent("livewire-upload-finish", { bubbles: true, detail: { id: component.id, property } }));
     let error2 = () => el.dispatchEvent(new CustomEvent("livewire-upload-error", { bubbles: true, detail: { id: component.id, property } }));
     let cancel = () => el.dispatchEvent(new CustomEvent("livewire-upload-cancel", { bubbles: true, detail: { id: component.id, property } }));
     let progress = (progressEvent) => {
       var percentCompleted = Math.round(progressEvent.loaded * 100 / progressEvent.total);
-      el.dispatchEvent(
-        new CustomEvent("livewire-upload-progress", {
-          bubbles: true,
-          detail: { progress: percentCompleted }
-        })
-      );
+      el.dispatchEvent(new CustomEvent("livewire-upload-progress", {
+        bubbles: true,
+        detail: { progress: percentCompleted }
+      }));
     };
     let eventHandler = (e) => {
       if (e.target.files.length === 0)
         return;
-      start3();
+      start4();
       if (e.target.multiple) {
         manager.uploadMultiple(property, e.target.files, finish, error2, progress, cancel);
       } else {
@@ -698,14 +691,7 @@
   }, cancelledCallback = () => {
   }) {
     let uploadManager = getUploadManager(component);
-    uploadManager.upload(
-      name,
-      file,
-      finishCallback,
-      errorCallback,
-      progressCallback,
-      cancelledCallback
-    );
+    uploadManager.upload(name, file, finishCallback, errorCallback, progressCallback, cancelledCallback);
   }
   function uploadMultiple(component, name, files, finishCallback = () => {
   }, errorCallback = () => {
@@ -713,33 +699,18 @@
   }, cancelledCallback = () => {
   }) {
     let uploadManager = getUploadManager(component);
-    uploadManager.uploadMultiple(
-      name,
-      files,
-      finishCallback,
-      errorCallback,
-      progressCallback,
-      cancelledCallback
-    );
+    uploadManager.uploadMultiple(name, files, finishCallback, errorCallback, progressCallback, cancelledCallback);
   }
   function removeUpload(component, name, tmpFilename, finishCallback = () => {
   }, errorCallback = () => {
   }) {
     let uploadManager = getUploadManager(component);
-    uploadManager.removeUpload(
-      name,
-      tmpFilename,
-      finishCallback,
-      errorCallback
-    );
+    uploadManager.removeUpload(name, tmpFilename, finishCallback, errorCallback);
   }
   function cancelUpload(component, name, cancelledCallback = () => {
   }) {
     let uploadManager = getUploadManager(component);
-    uploadManager.cancelUpload(
-      name,
-      cancelledCallback
-    );
+    uploadManager.cancelUpload(name, cancelledCallback);
   }
 
   // node_modules/alpinejs/dist/module.esm.js
@@ -1006,10 +977,10 @@
   function scope(node) {
     return mergeProxies(closestDataStack(node));
   }
-  function addScopeToNode(node, data2, referenceNode) {
-    node._x_dataStack = [data2, ...closestDataStack(referenceNode || node)];
+  function addScopeToNode(node, data22, referenceNode) {
+    node._x_dataStack = [data22, ...closestDataStack(referenceNode || node)];
     return () => {
-      node._x_dataStack = node._x_dataStack.filter((i) => i !== data2);
+      node._x_dataStack = node._x_dataStack.filter((i) => i !== data22);
     };
   }
   function closestDataStack(node) {
@@ -1028,32 +999,20 @@
   }
   var mergeProxyTrap = {
     ownKeys({ objects }) {
-      return Array.from(
-        new Set(objects.flatMap((i) => Object.keys(i)))
-      );
+      return Array.from(new Set(objects.flatMap((i) => Object.keys(i))));
     },
     has({ objects }, name) {
       if (name == Symbol.unscopables)
         return false;
-      return objects.some(
-        (obj) => Object.prototype.hasOwnProperty.call(obj, name) || Reflect.has(obj, name)
-      );
+      return objects.some((obj) => Object.prototype.hasOwnProperty.call(obj, name) || Reflect.has(obj, name));
     },
     get({ objects }, name, thisProxy) {
       if (name == "toJSON")
         return collapseProxies;
-      return Reflect.get(
-        objects.find(
-          (obj) => Reflect.has(obj, name)
-        ) || {},
-        name,
-        thisProxy
-      );
+      return Reflect.get(objects.find((obj) => Reflect.has(obj, name)) || {}, name, thisProxy);
     },
     set({ objects }, name, value, thisProxy) {
-      const target = objects.find(
-        (obj) => Object.prototype.hasOwnProperty.call(obj, name)
-      ) || objects[objects.length - 1];
+      const target = objects.find((obj) => Object.prototype.hasOwnProperty.call(obj, name)) || objects[objects.length - 1];
       const descriptor = Object.getOwnPropertyDescriptor(target, name);
       if (descriptor?.set && descriptor?.get)
         return descriptor.set.call(thisProxy, value) || true;
@@ -1067,7 +1026,7 @@
       return acc;
     }, {});
   }
-  function initInterceptors(data2) {
+  function initInterceptors(data22) {
     let isObject22 = (val) => typeof val === "object" && !Array.isArray(val) && val !== null;
     let recurse = (obj, basePath = "") => {
       Object.entries(Object.getOwnPropertyDescriptors(obj)).forEach(([key, { value, enumerable }]) => {
@@ -1077,7 +1036,7 @@
           return;
         let path = basePath === "" ? key : `${basePath}.${key}`;
         if (typeof value === "object" && value !== null && value._x_interceptor) {
-          obj[key] = value.initialize(data2, path, key);
+          obj[key] = value.initialize(data22, path, key);
         } else {
           if (isObject22(value) && value !== obj && !(value instanceof Element)) {
             recurse(value, path);
@@ -1085,25 +1044,25 @@
         }
       });
     };
-    return recurse(data2);
+    return recurse(data22);
   }
   function interceptor(callback, mutateObj = () => {
   }) {
     let obj = {
       initialValue: void 0,
       _x_interceptor: true,
-      initialize(data2, path, key) {
-        return callback(this.initialValue, () => get(data2, path), (value) => set(data2, path, value), path, key);
+      initialize(data22, path, key) {
+        return callback(this.initialValue, () => get(data22, path), (value) => set(data22, path, value), path, key);
       }
     };
     mutateObj(obj);
     return (initialValue) => {
       if (typeof initialValue === "object" && initialValue !== null && initialValue._x_interceptor) {
         let initialize = obj.initialize.bind(obj);
-        obj.initialize = (data2, path, key) => {
-          let innerValue = initialValue.initialize(data2, path, key);
+        obj.initialize = (data22, path, key) => {
+          let innerValue = initialValue.initialize(data22, path, key);
           obj.initialValue = innerValue;
-          return initialize(data2, path, key);
+          return initialize(data22, path, key);
         };
       } else {
         obj.initialValue = initialValue;
@@ -1160,10 +1119,7 @@
     }
   }
   function handleError(error2, el, expression = void 0) {
-    error2 = Object.assign(
-      error2 ?? { message: "No error message given." },
-      { el, expression }
-    );
+    error2 = Object.assign(error2 ?? { message: "No error message given." }, { el, expression });
     console.warn(`Alpine Expression Error: ${error2.message}
 
 ${expression ? 'Expression: "' + expression + '"\n\n' : ""}`, el);
@@ -1200,8 +1156,8 @@ ${expression ? 'Expression: "' + expression + '"\n\n' : ""}`, el);
   }
   function generateEvaluatorFromFunction(dataStack, func) {
     return (receiver = () => {
-    }, { scope: scope2 = {}, params = [] } = {}) => {
-      let result = func.apply(mergeProxies([scope2, ...dataStack]), params);
+    }, { scope: scope22 = {}, params = [] } = {}) => {
+      let result = func.apply(mergeProxies([scope22, ...dataStack]), params);
       runIfTypeOfFunction(receiver, result);
     };
   }
@@ -1215,10 +1171,7 @@ ${expression ? 'Expression: "' + expression + '"\n\n' : ""}`, el);
     let rightSideSafeExpression = /^[\n\s]*if.*\(.*\)/.test(expression.trim()) || /^(let|const)\s/.test(expression.trim()) ? `(async()=>{ ${expression} })()` : expression;
     const safeAsyncFunction = () => {
       try {
-        let func2 = new AsyncFunction(
-          ["__self", "scope"],
-          `with (scope) { __self.result = ${rightSideSafeExpression} }; __self.finished = true; return __self.result;`
-        );
+        let func2 = new AsyncFunction(["__self", "scope"], `with (scope) { __self.result = ${rightSideSafeExpression} }; __self.finished = true; return __self.result;`);
         Object.defineProperty(func2, "name", {
           value: `[Alpine] ${expression}`
         });
@@ -1235,10 +1188,10 @@ ${expression ? 'Expression: "' + expression + '"\n\n' : ""}`, el);
   function generateEvaluatorFromString(dataStack, expression, el) {
     let func = generateFunctionFromString(expression, el);
     return (receiver = () => {
-    }, { scope: scope2 = {}, params = [] } = {}) => {
+    }, { scope: scope22 = {}, params = [] } = {}) => {
       func.result = void 0;
       func.finished = false;
-      let completeScope = mergeProxies([scope2, ...dataStack]);
+      let completeScope = mergeProxies([scope22, ...dataStack]);
       if (typeof func === "function") {
         let promise = func(func, completeScope).catch((error2) => handleError(error2, el, expression));
         if (func.finished) {
@@ -1252,11 +1205,11 @@ ${expression ? 'Expression: "' + expression + '"\n\n' : ""}`, el);
       }
     };
   }
-  function runIfTypeOfFunction(receiver, value, scope2, params, el) {
+  function runIfTypeOfFunction(receiver, value, scope22, params, el) {
     if (shouldAutoEvaluateFunctions && typeof value === "function") {
-      let result = value.apply(scope2, params);
+      let result = value.apply(scope22, params);
       if (result instanceof Promise) {
-        result.then((i) => runIfTypeOfFunction(receiver, i, scope2, params)).catch((error2) => handleError(error2, el, value));
+        result.then((i) => runIfTypeOfFunction(receiver, i, scope22, params)).catch((error2) => handleError(error2, el, value));
       } else {
         receiver(result);
       }
@@ -1307,8 +1260,8 @@ ${expression ? 'Expression: "' + expression + '"\n\n' : ""}`, el);
       attributes = attributes.concat(vAttributes);
     }
     let transformedAttributeMap = {};
-    let directives2 = attributes.map(toTransformedAttributes((newName, oldName) => transformedAttributeMap[newName] = oldName)).filter(outNonAlpineAttributes).map(toParsedDirectives(transformedAttributeMap, originalAttributeOverride)).sort(byPriority);
-    return directives2.map((directive22) => {
+    let directives22 = attributes.map(toTransformedAttributes((newName, oldName) => transformedAttributeMap[newName] = oldName)).filter(outNonAlpineAttributes).map(toParsedDirectives(transformedAttributeMap, originalAttributeOverride)).sort(byPriority);
+    return directives22.map((directive22) => {
       return getDirectiveHandler(el, directive22);
     });
   }
@@ -1338,11 +1291,11 @@ ${expression ? 'Expression: "' + expression + '"\n\n' : ""}`, el);
   function getElementBoundUtilities(el) {
     let cleanups2 = [];
     let cleanup2 = (callback) => cleanups2.push(callback);
-    let [effect3, cleanupEffect] = elementBoundEffect(el);
+    let [effect32, cleanupEffect] = elementBoundEffect(el);
     cleanups2.push(cleanupEffect);
     let utilities = {
       Alpine: alpine_default,
-      effect: effect3,
+      effect: effect32,
       cleanup: cleanup2,
       evaluateLater: evaluateLater.bind(evaluateLater, el),
       evaluate: evaluate.bind(evaluate, el)
@@ -1430,14 +1383,12 @@ ${expression ? 'Expression: "' + expression + '"\n\n' : ""}`, el);
     return directiveOrder.indexOf(typeA) - directiveOrder.indexOf(typeB);
   }
   function dispatch2(el, name, detail = {}) {
-    el.dispatchEvent(
-      new CustomEvent(name, {
-        detail,
-        bubbles: true,
-        composed: true,
-        cancelable: true
-      })
-    );
+    el.dispatchEvent(new CustomEvent(name, {
+      detail,
+      bubbles: true,
+      composed: true,
+      cancelable: true
+    }));
   }
   function walk(el, callback) {
     if (typeof ShadowRoot === "function" && el instanceof ShadowRoot) {
@@ -1551,12 +1502,12 @@ ${expression ? 'Expression: "' + expression + '"\n\n' : ""}`, el);
       ["anchor", "anchor", ["[x-anchor]"]],
       ["sort", "sort", ["[x-sort]"]]
     ];
-    pluginDirectives.forEach(([plugin2, directive22, selectors]) => {
+    pluginDirectives.forEach(([plugin22, directive22, selectors]) => {
       if (directiveExists(directive22))
         return;
       selectors.some((selector) => {
         if (document.querySelector(selector)) {
-          warn(`found "${selector}", but missing ${plugin2} plugin`);
+          warn(`found "${selector}", but missing ${plugin22} plugin`);
           return true;
         }
       });
@@ -1795,8 +1746,8 @@ ${expression ? 'Expression: "' + expression + '"\n\n' : ""}`, el);
       };
   }
   window.Element.prototype._x_toggleAndCascadeWithTransitions = function(el, value, show, hide) {
-    const nextTick2 = document.visibilityState === "visible" ? requestAnimationFrame : setTimeout;
-    let clickAwayCompatibleShow = () => nextTick2(show);
+    const nextTick22 = document.visibilityState === "visible" ? requestAnimationFrame : setTimeout;
+    let clickAwayCompatibleShow = () => nextTick22(show);
     if (value) {
       if (el._x_transition && (el._x_transition.enter || el._x_transition.leave)) {
         el._x_transition.enter && (Object.entries(el._x_transition.enter.during).length || Object.entries(el._x_transition.enter.start).length || Object.entries(el._x_transition.enter.end).length) ? el._x_transition.in(show) : clickAwayCompatibleShow();
@@ -1817,7 +1768,7 @@ ${expression ? 'Expression: "' + expression + '"\n\n' : ""}`, el);
           closest._x_hideChildren = [];
         closest._x_hideChildren.push(el);
       } else {
-        nextTick2(() => {
+        nextTick22(() => {
           let hideAfterChildren = (el2) => {
             let carry = Promise.all([
               el2._x_hidePromise,
@@ -2398,47 +2349,6 @@ ${expression ? 'Expression: "' + expression + '"\n\n' : ""}`, el);
     bind: bind2
   };
   var alpine_default = Alpine2;
-  function cspEvaluator(el, expression) {
-    let dataStack = generateDataStack(el);
-    if (typeof expression === "function") {
-      return generateEvaluatorFromFunction(dataStack, expression);
-    }
-    let evaluator = generateEvaluator(el, expression, dataStack);
-    return tryCatch.bind(null, el, expression, evaluator);
-  }
-  function generateDataStack(el) {
-    let overriddenMagics = {};
-    injectMagics(overriddenMagics, el);
-    return [overriddenMagics, ...closestDataStack(el)];
-  }
-  function generateEvaluator(el, expression, dataStack) {
-    return (receiver = () => {
-    }, { scope: scope2 = {}, params = [] } = {}) => {
-      let completeScope = mergeProxies([scope2, ...dataStack]);
-      let evaluatedExpression = expression.split(".").reduce(
-        (currentScope, currentExpression) => {
-          if (currentScope[currentExpression] === void 0) {
-            throwExpressionError(el, expression);
-          }
-          return currentScope[currentExpression];
-        },
-        completeScope
-      );
-      runIfTypeOfFunction(receiver, evaluatedExpression, completeScope, params);
-    };
-  }
-  function throwExpressionError(el, expression) {
-    console.warn(
-      `Alpine Error: Alpine is unable to interpret the following expression using the CSP-friendly build:
-
-"${expression}"
-
-Read more about the Alpine's CSP-friendly build restrictions here: https://alpinejs.dev/advanced/csp
-
-`,
-      el
-    );
-  }
   function makeMap(str, expectsLowerCase) {
     const map = /* @__PURE__ */ Object.create(null);
     const list = str.split(",");
@@ -2492,33 +2402,33 @@ Read more about the Alpine's CSP-friendly build restrictions here: https://alpin
     if (isEffect(fn)) {
       fn = fn.raw;
     }
-    const effect3 = createReactiveEffect(fn, options);
+    const effect32 = createReactiveEffect(fn, options);
     if (!options.lazy) {
-      effect3();
+      effect32();
     }
-    return effect3;
+    return effect32;
   }
-  function stop(effect3) {
-    if (effect3.active) {
-      cleanup(effect3);
-      if (effect3.options.onStop) {
-        effect3.options.onStop();
+  function stop(effect32) {
+    if (effect32.active) {
+      cleanup(effect32);
+      if (effect32.options.onStop) {
+        effect32.options.onStop();
       }
-      effect3.active = false;
+      effect32.active = false;
     }
   }
   var uid = 0;
   function createReactiveEffect(fn, options) {
-    const effect3 = function reactiveEffect() {
-      if (!effect3.active) {
+    const effect32 = function reactiveEffect() {
+      if (!effect32.active) {
         return fn();
       }
-      if (!effectStack.includes(effect3)) {
-        cleanup(effect3);
+      if (!effectStack.includes(effect32)) {
+        cleanup(effect32);
         try {
           enableTracking();
-          effectStack.push(effect3);
-          activeEffect = effect3;
+          effectStack.push(effect32);
+          activeEffect = effect32;
           return fn();
         } finally {
           effectStack.pop();
@@ -2527,20 +2437,20 @@ Read more about the Alpine's CSP-friendly build restrictions here: https://alpin
         }
       }
     };
-    effect3.id = uid++;
-    effect3.allowRecurse = !!options.allowRecurse;
-    effect3._isEffect = true;
-    effect3.active = true;
-    effect3.raw = fn;
-    effect3.deps = [];
-    effect3.options = options;
-    return effect3;
+    effect32.id = uid++;
+    effect32.allowRecurse = !!options.allowRecurse;
+    effect32._isEffect = true;
+    effect32.active = true;
+    effect32.raw = fn;
+    effect32.deps = [];
+    effect32.options = options;
+    return effect32;
   }
-  function cleanup(effect3) {
-    const { deps } = effect3;
+  function cleanup(effect32) {
+    const { deps } = effect32;
     if (deps.length) {
       for (let i = 0; i < deps.length; i++) {
-        deps[i].delete(effect3);
+        deps[i].delete(effect32);
       }
       deps.length = 0;
     }
@@ -2592,9 +2502,9 @@ Read more about the Alpine's CSP-friendly build restrictions here: https://alpin
     const effects = /* @__PURE__ */ new Set();
     const add2 = (effectsToAdd) => {
       if (effectsToAdd) {
-        effectsToAdd.forEach((effect3) => {
-          if (effect3 !== activeEffect || effect3.allowRecurse) {
-            effects.add(effect3);
+        effectsToAdd.forEach((effect32) => {
+          if (effect32 !== activeEffect || effect32.allowRecurse) {
+            effects.add(effect32);
           }
         });
       }
@@ -2637,10 +2547,10 @@ Read more about the Alpine's CSP-friendly build restrictions here: https://alpin
           break;
       }
     }
-    const run = (effect3) => {
-      if (effect3.options.onTrigger) {
-        effect3.options.onTrigger({
-          effect: effect3,
+    const run = (effect32) => {
+      if (effect32.options.onTrigger) {
+        effect32.options.onTrigger({
+          effect: effect32,
           target,
           key,
           type,
@@ -2649,10 +2559,10 @@ Read more about the Alpine's CSP-friendly build restrictions here: https://alpin
           oldTarget
         });
       }
-      if (effect3.options.scheduler) {
-        effect3.options.scheduler(effect3);
+      if (effect32.options.scheduler) {
+        effect32.options.scheduler(effect32);
       } else {
-        effect3();
+        effect32();
       }
     };
     effects.forEach(run);
@@ -2689,7 +2599,7 @@ Read more about the Alpine's CSP-friendly build restrictions here: https://alpin
     return instrumentations;
   }
   function createGetter(isReadonly = false, shallow = false) {
-    return function get3(target, key, receiver) {
+    return function get32(target, key, receiver) {
       if (key === "__v_isReactive") {
         return !isReadonly;
       } else if (key === "__v_isReadonly") {
@@ -2723,7 +2633,7 @@ Read more about the Alpine's CSP-friendly build restrictions here: https://alpin
   }
   var set2 = /* @__PURE__ */ createSetter();
   function createSetter(shallow = false) {
-    return function set3(target, key, value, receiver) {
+    return function set32(target, key, value, receiver) {
       let oldValue = target[key];
       if (!shallow) {
         value = toRaw(value);
@@ -2838,7 +2748,7 @@ Read more about the Alpine's CSP-friendly build restrictions here: https://alpin
   function set$1(key, value) {
     value = toRaw(value);
     const target = toRaw(this);
-    const { has: has2, get: get3 } = getProto(target);
+    const { has: has2, get: get32 } = getProto(target);
     let hadKey = has2.call(target, key);
     if (!hadKey) {
       key = toRaw(key);
@@ -2846,7 +2756,7 @@ Read more about the Alpine's CSP-friendly build restrictions here: https://alpin
     } else if (true) {
       checkIdentityKeys(target, has2, key);
     }
-    const oldValue = get3.call(target, key);
+    const oldValue = get32.call(target, key);
     target.set(key, value);
     if (!hadKey) {
       trigger(target, "add", key, value);
@@ -2857,7 +2767,7 @@ Read more about the Alpine's CSP-friendly build restrictions here: https://alpin
   }
   function deleteEntry(key) {
     const target = toRaw(this);
-    const { has: has2, get: get3 } = getProto(target);
+    const { has: has2, get: get32 } = getProto(target);
     let hadKey = has2.call(target, key);
     if (!hadKey) {
       key = toRaw(key);
@@ -2865,7 +2775,7 @@ Read more about the Alpine's CSP-friendly build restrictions here: https://alpin
     } else if (true) {
       checkIdentityKeys(target, has2, key);
     }
-    const oldValue = get3 ? get3.call(target, key) : void 0;
+    const oldValue = get32 ? get32.call(target, key) : void 0;
     const result = target.delete(key);
     if (hadKey) {
       trigger(target, "delete", key, void 0, oldValue);
@@ -2966,18 +2876,10 @@ Read more about the Alpine's CSP-friendly build restrictions here: https://alpin
       has(key) {
         return has$1.call(this, key, true);
       },
-      add: createReadonlyMethod(
-        "add"
-      ),
-      set: createReadonlyMethod(
-        "set"
-      ),
-      delete: createReadonlyMethod(
-        "delete"
-      ),
-      clear: createReadonlyMethod(
-        "clear"
-      ),
+      add: createReadonlyMethod("add"),
+      set: createReadonlyMethod("set"),
+      delete: createReadonlyMethod("delete"),
+      clear: createReadonlyMethod("clear"),
       forEach: createForEach(true, false)
     };
     const shallowReadonlyInstrumentations2 = {
@@ -2990,18 +2892,10 @@ Read more about the Alpine's CSP-friendly build restrictions here: https://alpin
       has(key) {
         return has$1.call(this, key, true);
       },
-      add: createReadonlyMethod(
-        "add"
-      ),
-      set: createReadonlyMethod(
-        "set"
-      ),
-      delete: createReadonlyMethod(
-        "delete"
-      ),
-      clear: createReadonlyMethod(
-        "clear"
-      ),
+      add: createReadonlyMethod("add"),
+      set: createReadonlyMethod("set"),
+      delete: createReadonlyMethod("delete"),
+      clear: createReadonlyMethod("clear"),
       forEach: createForEach(true, true)
     };
     const iteratorMethods = ["keys", "values", "entries", Symbol.iterator];
@@ -3105,8 +2999,8 @@ Read more about the Alpine's CSP-friendly build restrictions here: https://alpin
   }
   magic("nextTick", () => nextTick);
   magic("dispatch", (el) => dispatch2.bind(dispatch2, el));
-  magic("watch", (el, { evaluateLater: evaluateLater2, cleanup: cleanup2 }) => (key, callback) => {
-    let evaluate22 = evaluateLater2(key);
+  magic("watch", (el, { evaluateLater: evaluateLater22, cleanup: cleanup2 }) => (key, callback) => {
+    let evaluate22 = evaluateLater22(key);
     let getter = () => {
       let value;
       evaluate22((i) => value = i);
@@ -3181,14 +3075,14 @@ Read more about the Alpine's CSP-friendly build restrictions here: https://alpin
   function warnMissingPluginMagic(name, magicName, slug) {
     magic(magicName, (el) => warn(`You can't use [$${magicName}] without first installing the "${name}" plugin here: https://alpinejs.dev/plugins/${slug}`, el));
   }
-  directive("modelable", (el, { expression }, { effect: effect3, evaluateLater: evaluateLater2, cleanup: cleanup2 }) => {
-    let func = evaluateLater2(expression);
+  directive("modelable", (el, { expression }, { effect: effect32, evaluateLater: evaluateLater22, cleanup: cleanup2 }) => {
+    let func = evaluateLater22(expression);
     let innerGet = () => {
       let result;
       func((i) => result = i);
       return result;
     };
-    let evaluateInnerSet = evaluateLater2(`${expression} = __placeholder`);
+    let evaluateInnerSet = evaluateLater22(`${expression} = __placeholder`);
     let innerSet = (val) => evaluateInnerSet(() => {
     }, { scope: { "__placeholder": val } });
     let initialValue = innerGet();
@@ -3199,24 +3093,21 @@ Read more about the Alpine's CSP-friendly build restrictions here: https://alpin
       el._x_removeModelListeners["default"]();
       let outerGet = el._x_model.get;
       let outerSet = el._x_model.set;
-      let releaseEntanglement = entangle(
-        {
-          get() {
-            return outerGet();
-          },
-          set(value) {
-            outerSet(value);
-          }
+      let releaseEntanglement = entangle({
+        get() {
+          return outerGet();
         },
-        {
-          get() {
-            return innerGet();
-          },
-          set(value) {
-            innerSet(value);
-          }
+        set(value) {
+          outerSet(value);
         }
-      );
+      }, {
+        get() {
+          return innerGet();
+        },
+        set(value) {
+          innerSet(value);
+        }
+      });
       cleanup2(releaseEntanglement);
     });
   });
@@ -3224,20 +3115,20 @@ Read more about the Alpine's CSP-friendly build restrictions here: https://alpin
     if (el.tagName.toLowerCase() !== "template")
       warn("x-teleport can only be used on a <template> tag", el);
     let target = getTarget(expression);
-    let clone2 = el.content.cloneNode(true).firstElementChild;
-    el._x_teleport = clone2;
-    clone2._x_teleportBack = el;
+    let clone22 = el.content.cloneNode(true).firstElementChild;
+    el._x_teleport = clone22;
+    clone22._x_teleportBack = el;
     el.setAttribute("data-teleport-template", true);
-    clone2.setAttribute("data-teleport-target", true);
+    clone22.setAttribute("data-teleport-target", true);
     if (el._x_forwardEvents) {
       el._x_forwardEvents.forEach((eventName) => {
-        clone2.addEventListener(eventName, (e) => {
+        clone22.addEventListener(eventName, (e) => {
           e.stopPropagation();
           el.dispatchEvent(new e.constructor(e.type, e));
         });
       });
     }
-    addScopeToNode(clone2, {}, el);
+    addScopeToNode(clone22, {}, el);
     let placeInDom = (clone3, target2, modifiers2) => {
       if (modifiers2.includes("prepend")) {
         target2.parentNode.insertBefore(clone3, target2);
@@ -3248,9 +3139,9 @@ Read more about the Alpine's CSP-friendly build restrictions here: https://alpin
       }
     };
     mutateDom(() => {
-      placeInDom(clone2, target, modifiers);
+      placeInDom(clone22, target, modifiers);
       skipDuringClone(() => {
-        initTree(clone2);
+        initTree(clone22);
       })();
     });
     el._x_teleportPutBack = () => {
@@ -3259,12 +3150,10 @@ Read more about the Alpine's CSP-friendly build restrictions here: https://alpin
         placeInDom(el._x_teleport, target2, modifiers);
       });
     };
-    cleanup2(
-      () => mutateDom(() => {
-        clone2.remove();
-        destroyTree(clone2);
-      })
-    );
+    cleanup2(() => mutateDom(() => {
+      clone22.remove();
+      destroyTree(clone22);
+    }));
   });
   var teleportContainerDuringClone = document.createElement("div");
   function getTarget(expression) {
@@ -3286,8 +3175,8 @@ Read more about the Alpine's CSP-friendly build restrictions here: https://alpin
     });
   };
   directive("ignore", handler);
-  directive("effect", skipDuringClone((el, { expression }, { effect: effect3 }) => {
-    effect3(evaluateLater(el, expression));
+  directive("effect", skipDuringClone((el, { expression }, { effect: effect32 }) => {
+    effect32(evaluateLater(el, expression));
   }));
   function on(el, event, modifiers, callback) {
     let listenerTarget = el;
@@ -3373,9 +3262,7 @@ Read more about the Alpine's CSP-friendly build restrictions here: https://alpin
     return !Array.isArray(subject) && !isNaN(subject);
   }
   function kebabCase2(subject) {
-    if ([" ", "_"].includes(
-      subject
-    ))
+    if ([" ", "_"].includes(subject))
       return subject;
     return subject.replace(/([a-z])([A-Z])/g, "$1-$2").replace(/[_\s]/, "-").toLowerCase();
   }
@@ -3446,7 +3333,7 @@ Read more about the Alpine's CSP-friendly build restrictions here: https://alpin
         return modifier;
     }).filter((modifier) => modifier);
   }
-  directive("model", (el, { modifiers, expression }, { effect: effect3, cleanup: cleanup2 }) => {
+  directive("model", (el, { modifiers, expression }, { effect: effect32, cleanup: cleanup2 }) => {
     let scopeTarget = el;
     if (modifiers.includes("parent")) {
       scopeTarget = el.parentNode;
@@ -3491,9 +3378,7 @@ Read more about the Alpine's CSP-friendly build restrictions here: https://alpin
     });
     if (modifiers.includes("fill")) {
       if ([void 0, null, ""].includes(getValue()) || isCheckbox(el) && Array.isArray(getValue()) || el.tagName.toLowerCase() === "select" && el.multiple) {
-        setValue(
-          getInputValue(el, modifiers, { target: el }, getValue())
-        );
+        setValue(getInputValue(el, modifiers, { target: el }, getValue()));
       }
     }
     if (!el._x_removeModelListeners)
@@ -3521,7 +3406,7 @@ Read more about the Alpine's CSP-friendly build restrictions here: https://alpin
       mutateDom(() => bind(el, "value", value));
       delete window.fromModel;
     };
-    effect3(() => {
+    effect32(() => {
       let value = getValue();
       if (modifiers.includes("unintrusive") && document.activeElement.isSameNode(el))
         return;
@@ -3605,9 +3490,9 @@ Read more about the Alpine's CSP-friendly build restrictions here: https://alpin
     }
     return evaluate22(expression, {}, false);
   }));
-  directive("text", (el, { expression }, { effect: effect3, evaluateLater: evaluateLater2 }) => {
-    let evaluate22 = evaluateLater2(expression);
-    effect3(() => {
+  directive("text", (el, { expression }, { effect: effect32, evaluateLater: evaluateLater22 }) => {
+    let evaluate22 = evaluateLater22(expression);
+    effect32(() => {
       evaluate22((value) => {
         mutateDom(() => {
           el.textContent = value;
@@ -3615,9 +3500,9 @@ Read more about the Alpine's CSP-friendly build restrictions here: https://alpin
       });
     });
   });
-  directive("html", (el, { expression }, { effect: effect3, evaluateLater: evaluateLater2 }) => {
-    let evaluate22 = evaluateLater2(expression);
-    effect3(() => {
+  directive("html", (el, { expression }, { effect: effect32, evaluateLater: evaluateLater22 }) => {
+    let evaluate22 = evaluateLater22(expression);
+    effect32(() => {
       evaluate22((value) => {
         mutateDom(() => {
           el.innerHTML = value;
@@ -3629,7 +3514,7 @@ Read more about the Alpine's CSP-friendly build restrictions here: https://alpin
     });
   });
   mapAttributes(startingWith(":", into(prefix("bind:"))));
-  var handler2 = (el, { value, modifiers, expression, original }, { effect: effect3, cleanup: cleanup2 }) => {
+  var handler2 = (el, { value, modifiers, expression, original }, { effect: effect32, cleanup: cleanup2 }) => {
     if (!value) {
       let bindingProviders = {};
       injectBindingProviders(bindingProviders);
@@ -3645,7 +3530,7 @@ Read more about the Alpine's CSP-friendly build restrictions here: https://alpin
       return;
     }
     let evaluate22 = evaluateLater(el, expression);
-    effect3(() => evaluate22((result) => {
+    effect32(() => evaluate22((result) => {
       if (result === void 0 && typeof expression === "string" && expression.match(/\./)) {
         result = "";
       }
@@ -3676,11 +3561,11 @@ Read more about the Alpine's CSP-friendly build restrictions here: https://alpin
     injectMagics(magicContext, el);
     let dataProviderContext = {};
     injectDataProviders(dataProviderContext, magicContext);
-    let data2 = evaluate(el, expression, { scope: dataProviderContext });
-    if (data2 === void 0 || data2 === true)
-      data2 = {};
-    injectMagics(data2, el);
-    let reactiveData = reactive(data2);
+    let data22 = evaluate(el, expression, { scope: dataProviderContext });
+    if (data22 === void 0 || data22 === true)
+      data22 = {};
+    injectMagics(data22, el);
+    let reactiveData = reactive(data22);
     initInterceptors(reactiveData);
     let undo = addScopeToNode(el, reactiveData);
     reactiveData["init"] && evaluate(el, reactiveData["init"]);
@@ -3702,7 +3587,7 @@ Read more about the Alpine's CSP-friendly build restrictions here: https://alpin
       return true;
     return el.hasAttribute("data-has-alpine-state");
   }
-  directive("show", (el, { modifiers, expression }, { effect: effect3 }) => {
+  directive("show", (el, { modifiers, expression }, { effect: effect32 }) => {
     let evaluate22 = evaluateLater(el, expression);
     if (!el._x_doHide)
       el._x_doHide = () => {
@@ -3729,19 +3614,16 @@ Read more about the Alpine's CSP-friendly build restrictions here: https://alpin
       el._x_isShown = true;
     };
     let clickAwayCompatibleShow = () => setTimeout(show);
-    let toggle = once(
-      (value) => value ? show() : hide(),
-      (value) => {
-        if (typeof el._x_toggleAndCascadeWithTransitions === "function") {
-          el._x_toggleAndCascadeWithTransitions(el, value, show, hide);
-        } else {
-          value ? clickAwayCompatibleShow() : hide();
-        }
+    let toggle = once((value) => value ? show() : hide(), (value) => {
+      if (typeof el._x_toggleAndCascadeWithTransitions === "function") {
+        el._x_toggleAndCascadeWithTransitions(el, value, show, hide);
+      } else {
+        value ? clickAwayCompatibleShow() : hide();
       }
-    );
+    });
     let oldValue;
     let firstTime = true;
-    effect3(() => evaluate22((value) => {
+    effect32(() => evaluate22((value) => {
       if (!firstTime && value === oldValue)
         return;
       if (modifiers.includes("immediate"))
@@ -3751,23 +3633,18 @@ Read more about the Alpine's CSP-friendly build restrictions here: https://alpin
       firstTime = false;
     }));
   });
-  directive("for", (el, { expression }, { effect: effect3, cleanup: cleanup2 }) => {
+  directive("for", (el, { expression }, { effect: effect32, cleanup: cleanup2 }) => {
     let iteratorNames = parseForExpression(expression);
     let evaluateItems = evaluateLater(el, iteratorNames.items);
-    let evaluateKey = evaluateLater(
-      el,
-      el._x_keyExpression || "index"
-    );
+    let evaluateKey = evaluateLater(el, el._x_keyExpression || "index");
     el._x_prevKeys = [];
     el._x_lookup = {};
-    effect3(() => loop(el, iteratorNames, evaluateItems, evaluateKey));
+    effect32(() => loop(el, iteratorNames, evaluateItems, evaluateKey));
     cleanup2(() => {
-      Object.values(el._x_lookup).forEach((el2) => mutateDom(
-        () => {
-          destroyTree(el2);
-          el2.remove();
-        }
-      ));
+      Object.values(el._x_lookup).forEach((el2) => mutateDom(() => {
+        destroyTree(el2);
+        el2.remove();
+      }));
       delete el._x_prevKeys;
       delete el._x_lookup;
     });
@@ -3787,23 +3664,23 @@ Read more about the Alpine's CSP-friendly build restrictions here: https://alpin
       let keys = [];
       if (isObject22(items)) {
         items = Object.entries(items).map(([key, value]) => {
-          let scope2 = getIterationScopeVariables(iteratorNames, value, key, items);
+          let scope22 = getIterationScopeVariables(iteratorNames, value, key, items);
           evaluateKey((value2) => {
             if (keys.includes(value2))
               warn("Duplicate key on x-for", el);
             keys.push(value2);
-          }, { scope: { index: key, ...scope2 } });
-          scopes.push(scope2);
+          }, { scope: { index: key, ...scope22 } });
+          scopes.push(scope22);
         });
       } else {
         for (let i = 0; i < items.length; i++) {
-          let scope2 = getIterationScopeVariables(iteratorNames, items[i], i, items);
+          let scope22 = getIterationScopeVariables(iteratorNames, items[i], i, items);
           evaluateKey((value) => {
             if (keys.includes(value))
               warn("Duplicate key on x-for", el);
             keys.push(value);
-          }, { scope: { index: i, ...scope2 } });
-          scopes.push(scope2);
+          }, { scope: { index: i, ...scope22 } });
+          scopes.push(scope22);
         }
       }
       let adds = [];
@@ -3866,24 +3743,24 @@ Read more about the Alpine's CSP-friendly build restrictions here: https://alpin
         let lastEl = lastKey2 === "template" ? templateEl : lookup[lastKey2];
         if (lastEl._x_currentIfEl)
           lastEl = lastEl._x_currentIfEl;
-        let scope2 = scopes[index];
+        let scope22 = scopes[index];
         let key = keys[index];
-        let clone2 = document.importNode(templateEl.content, true).firstElementChild;
-        let reactiveScope = reactive(scope2);
-        addScopeToNode(clone2, reactiveScope, templateEl);
-        clone2._x_refreshXForScope = (newScope) => {
+        let clone22 = document.importNode(templateEl.content, true).firstElementChild;
+        let reactiveScope = reactive(scope22);
+        addScopeToNode(clone22, reactiveScope, templateEl);
+        clone22._x_refreshXForScope = (newScope) => {
           Object.entries(newScope).forEach(([key2, value]) => {
             reactiveScope[key2] = value;
           });
         };
         mutateDom(() => {
-          lastEl.after(clone2);
-          skipDuringClone(() => initTree(clone2))();
+          lastEl.after(clone22);
+          skipDuringClone(() => initTree(clone22))();
         });
         if (typeof key === "object") {
           warn("x-for key cannot be an object, it must be a string or an integer", templateEl);
         }
-        lookup[key] = clone2;
+        lookup[key] = clone22;
       }
       for (let i = 0; i < sames.length; i++) {
         lookup[sames[i]]._x_refreshXForScope(scopes[keys.indexOf(sames[i])]);
@@ -3947,28 +3824,28 @@ Read more about the Alpine's CSP-friendly build restrictions here: https://alpin
     cleanup2(() => delete root._x_refs[expression]);
   };
   directive("ref", handler3);
-  directive("if", (el, { expression }, { effect: effect3, cleanup: cleanup2 }) => {
+  directive("if", (el, { expression }, { effect: effect32, cleanup: cleanup2 }) => {
     if (el.tagName.toLowerCase() !== "template")
       warn("x-if can only be used on a <template> tag", el);
     let evaluate22 = evaluateLater(el, expression);
     let show = () => {
       if (el._x_currentIfEl)
         return el._x_currentIfEl;
-      let clone2 = el.content.cloneNode(true).firstElementChild;
-      addScopeToNode(clone2, {}, el);
+      let clone22 = el.content.cloneNode(true).firstElementChild;
+      addScopeToNode(clone22, {}, el);
       mutateDom(() => {
-        el.after(clone2);
-        skipDuringClone(() => initTree(clone2))();
+        el.after(clone22);
+        skipDuringClone(() => initTree(clone22))();
       });
-      el._x_currentIfEl = clone2;
+      el._x_currentIfEl = clone22;
       el._x_undoIf = () => {
         mutateDom(() => {
-          destroyTree(clone2);
-          clone2.remove();
+          destroyTree(clone22);
+          clone22.remove();
         });
         delete el._x_currentIfEl;
       };
-      return clone2;
+      return clone22;
     };
     let hide = () => {
       if (!el._x_undoIf)
@@ -3976,7 +3853,7 @@ Read more about the Alpine's CSP-friendly build restrictions here: https://alpin
       el._x_undoIf();
       delete el._x_undoIf;
     };
-    effect3(() => evaluate22((value) => {
+    effect32(() => evaluate22((value) => {
       value ? show() : hide();
     }));
     cleanup2(() => el._x_undoIf && el._x_undoIf());
@@ -4013,10 +3890,1589 @@ Read more about the Alpine's CSP-friendly build restrictions here: https://alpin
   function warnMissingPluginDirective(name, directiveName, slug) {
     directive(directiveName, (el) => warn(`You can't use [x-${directiveName}] without first installing the "${name}" plugin here: https://alpinejs.dev/plugins/${slug}`, el));
   }
-  alpine_default.setEvaluator(cspEvaluator);
+  alpine_default.setEvaluator(normalEvaluator);
   alpine_default.setReactivityEngine({ reactive: reactive2, effect: effect2, release: stop, raw: toRaw });
   var src_default = alpine_default;
   var module_default = src_default;
+
+  // node_modules/alpinejs/src/scope.js
+  function scope2(node) {
+    return mergeProxies2(closestDataStack2(node));
+  }
+  function addScopeToNode2(node, data3, referenceNode) {
+    node._x_dataStack = [data3, ...closestDataStack2(referenceNode || node)];
+    return () => {
+      node._x_dataStack = node._x_dataStack.filter((i) => i !== data3);
+    };
+  }
+  function closestDataStack2(node) {
+    if (node._x_dataStack)
+      return node._x_dataStack;
+    if (typeof ShadowRoot === "function" && node instanceof ShadowRoot) {
+      return closestDataStack2(node.host);
+    }
+    if (!node.parentNode) {
+      return [];
+    }
+    return closestDataStack2(node.parentNode);
+  }
+  function mergeProxies2(objects) {
+    return new Proxy({ objects }, mergeProxyTrap2);
+  }
+  var mergeProxyTrap2 = {
+    ownKeys({ objects }) {
+      return Array.from(new Set(objects.flatMap((i) => Object.keys(i))));
+    },
+    has({ objects }, name) {
+      if (name == Symbol.unscopables)
+        return false;
+      return objects.some((obj) => Object.prototype.hasOwnProperty.call(obj, name) || Reflect.has(obj, name));
+    },
+    get({ objects }, name, thisProxy) {
+      if (name == "toJSON")
+        return collapseProxies2;
+      return Reflect.get(objects.find((obj) => Reflect.has(obj, name)) || {}, name, thisProxy);
+    },
+    set({ objects }, name, value, thisProxy) {
+      const target = objects.find((obj) => Object.prototype.hasOwnProperty.call(obj, name)) || objects[objects.length - 1];
+      const descriptor = Object.getOwnPropertyDescriptor(target, name);
+      if (descriptor?.set && descriptor?.get)
+        return descriptor.set.call(thisProxy, value) || true;
+      return Reflect.set(target, name, value);
+    }
+  };
+  function collapseProxies2() {
+    let keys = Reflect.ownKeys(this);
+    return keys.reduce((acc, key) => {
+      acc[key] = Reflect.get(this, key);
+      return acc;
+    }, {});
+  }
+
+  // node_modules/alpinejs/src/scheduler.js
+  var flushPending2 = false;
+  var flushing2 = false;
+  var queue2 = [];
+  var lastFlushedIndex2 = -1;
+  function scheduler2(callback) {
+    queueJob2(callback);
+  }
+  function queueJob2(job) {
+    if (!queue2.includes(job))
+      queue2.push(job);
+    queueFlush2();
+  }
+  function dequeueJob2(job) {
+    let index = queue2.indexOf(job);
+    if (index !== -1 && index > lastFlushedIndex2)
+      queue2.splice(index, 1);
+  }
+  function queueFlush2() {
+    if (!flushing2 && !flushPending2) {
+      flushPending2 = true;
+      queueMicrotask(flushJobs2);
+    }
+  }
+  function flushJobs2() {
+    flushPending2 = false;
+    flushing2 = true;
+    for (let i = 0; i < queue2.length; i++) {
+      queue2[i]();
+      lastFlushedIndex2 = i;
+    }
+    queue2.length = 0;
+    lastFlushedIndex2 = -1;
+    flushing2 = false;
+  }
+
+  // node_modules/alpinejs/src/mutation.js
+  var onAttributeAddeds2 = [];
+  var onElRemoveds2 = [];
+  var onElAddeds2 = [];
+  function onElAdded2(callback) {
+    onElAddeds2.push(callback);
+  }
+  function onElRemoved2(el, callback) {
+    if (typeof callback === "function") {
+      if (!el._x_cleanups)
+        el._x_cleanups = [];
+      el._x_cleanups.push(callback);
+    } else {
+      callback = el;
+      onElRemoveds2.push(callback);
+    }
+  }
+  function onAttributesAdded2(callback) {
+    onAttributeAddeds2.push(callback);
+  }
+  function onAttributeRemoved2(el, name, callback) {
+    if (!el._x_attributeCleanups)
+      el._x_attributeCleanups = {};
+    if (!el._x_attributeCleanups[name])
+      el._x_attributeCleanups[name] = [];
+    el._x_attributeCleanups[name].push(callback);
+  }
+  function cleanupAttributes2(el, names) {
+    if (!el._x_attributeCleanups)
+      return;
+    Object.entries(el._x_attributeCleanups).forEach(([name, value]) => {
+      if (names === void 0 || names.includes(name)) {
+        value.forEach((i) => i());
+        delete el._x_attributeCleanups[name];
+      }
+    });
+  }
+  function cleanupElement2(el) {
+    el._x_effects?.forEach(dequeueJob2);
+    while (el._x_cleanups?.length)
+      el._x_cleanups.pop()();
+  }
+  var observer2 = new MutationObserver(onMutate2);
+  var currentlyObserving2 = false;
+  function startObservingMutations2() {
+    observer2.observe(document, { subtree: true, childList: true, attributes: true, attributeOldValue: true });
+    currentlyObserving2 = true;
+  }
+  function stopObservingMutations2() {
+    flushObserver2();
+    observer2.disconnect();
+    currentlyObserving2 = false;
+  }
+  var queuedMutations2 = [];
+  function flushObserver2() {
+    let records = observer2.takeRecords();
+    queuedMutations2.push(() => records.length > 0 && onMutate2(records));
+    let queueLengthWhenTriggered = queuedMutations2.length;
+    queueMicrotask(() => {
+      if (queuedMutations2.length === queueLengthWhenTriggered) {
+        while (queuedMutations2.length > 0)
+          queuedMutations2.shift()();
+      }
+    });
+  }
+  function mutateDom2(callback) {
+    if (!currentlyObserving2)
+      return callback();
+    stopObservingMutations2();
+    let result = callback();
+    startObservingMutations2();
+    return result;
+  }
+  var isCollecting2 = false;
+  var deferredMutations2 = [];
+  function deferMutations2() {
+    isCollecting2 = true;
+  }
+  function flushAndStopDeferringMutations2() {
+    isCollecting2 = false;
+    onMutate2(deferredMutations2);
+    deferredMutations2 = [];
+  }
+  function onMutate2(mutations) {
+    if (isCollecting2) {
+      deferredMutations2 = deferredMutations2.concat(mutations);
+      return;
+    }
+    let addedNodes = [];
+    let removedNodes = /* @__PURE__ */ new Set();
+    let addedAttributes = /* @__PURE__ */ new Map();
+    let removedAttributes = /* @__PURE__ */ new Map();
+    for (let i = 0; i < mutations.length; i++) {
+      if (mutations[i].target._x_ignoreMutationObserver)
+        continue;
+      if (mutations[i].type === "childList") {
+        mutations[i].removedNodes.forEach((node) => {
+          if (node.nodeType !== 1)
+            return;
+          if (!node._x_marker)
+            return;
+          removedNodes.add(node);
+        });
+        mutations[i].addedNodes.forEach((node) => {
+          if (node.nodeType !== 1)
+            return;
+          if (removedNodes.has(node)) {
+            removedNodes.delete(node);
+            return;
+          }
+          if (node._x_marker)
+            return;
+          addedNodes.push(node);
+        });
+      }
+      if (mutations[i].type === "attributes") {
+        let el = mutations[i].target;
+        let name = mutations[i].attributeName;
+        let oldValue = mutations[i].oldValue;
+        let add2 = () => {
+          if (!addedAttributes.has(el))
+            addedAttributes.set(el, []);
+          addedAttributes.get(el).push({ name, value: el.getAttribute(name) });
+        };
+        let remove = () => {
+          if (!removedAttributes.has(el))
+            removedAttributes.set(el, []);
+          removedAttributes.get(el).push(name);
+        };
+        if (el.hasAttribute(name) && oldValue === null) {
+          add2();
+        } else if (el.hasAttribute(name)) {
+          remove();
+          add2();
+        } else {
+          remove();
+        }
+      }
+    }
+    removedAttributes.forEach((attrs, el) => {
+      cleanupAttributes2(el, attrs);
+    });
+    addedAttributes.forEach((attrs, el) => {
+      onAttributeAddeds2.forEach((i) => i(el, attrs));
+    });
+    for (let node of removedNodes) {
+      if (addedNodes.some((i) => i.contains(node)))
+        continue;
+      onElRemoveds2.forEach((i) => i(node));
+    }
+    for (let node of addedNodes) {
+      if (!node.isConnected)
+        continue;
+      onElAddeds2.forEach((i) => i(node));
+    }
+    addedNodes = null;
+    removedNodes = null;
+    addedAttributes = null;
+    removedAttributes = null;
+  }
+
+  // node_modules/alpinejs/src/reactivity.js
+  var reactive3;
+  var effect3;
+  var release2;
+  var raw2;
+  var shouldSchedule2 = true;
+  function disableEffectScheduling2(callback) {
+    shouldSchedule2 = false;
+    callback();
+    shouldSchedule2 = true;
+  }
+  function setReactivityEngine2(engine) {
+    reactive3 = engine.reactive;
+    release2 = engine.release;
+    effect3 = (callback) => engine.effect(callback, { scheduler: (task) => {
+      if (shouldSchedule2) {
+        scheduler2(task);
+      } else {
+        task();
+      }
+    } });
+    raw2 = engine.raw;
+  }
+  function overrideEffect2(override) {
+    effect3 = override;
+  }
+  function elementBoundEffect2(el) {
+    let cleanup2 = () => {
+    };
+    let wrappedEffect = (callback) => {
+      let effectReference = effect3(callback);
+      if (!el._x_effects) {
+        el._x_effects = /* @__PURE__ */ new Set();
+        el._x_runEffects = () => {
+          el._x_effects.forEach((i) => i());
+        };
+      }
+      el._x_effects.add(effectReference);
+      cleanup2 = () => {
+        if (effectReference === void 0)
+          return;
+        el._x_effects.delete(effectReference);
+        release2(effectReference);
+      };
+      return effectReference;
+    };
+    return [wrappedEffect, () => {
+      cleanup2();
+    }];
+  }
+  function watch2(getter, callback) {
+    let firstTime = true;
+    let oldValue;
+    let effectReference = effect3(() => {
+      let value = getter();
+      JSON.stringify(value);
+      if (!firstTime) {
+        queueMicrotask(() => {
+          callback(value, oldValue);
+          oldValue = value;
+        });
+      } else {
+        oldValue = value;
+      }
+      firstTime = false;
+    });
+    return () => release2(effectReference);
+  }
+
+  // node_modules/alpinejs/src/utils/dispatch.js
+  function dispatch3(el, name, detail = {}) {
+    el.dispatchEvent(new CustomEvent(name, {
+      detail,
+      bubbles: true,
+      composed: true,
+      cancelable: true
+    }));
+  }
+
+  // node_modules/alpinejs/src/utils/walk.js
+  function walk2(el, callback) {
+    if (typeof ShadowRoot === "function" && el instanceof ShadowRoot) {
+      Array.from(el.children).forEach((el2) => walk2(el2, callback));
+      return;
+    }
+    let skip = false;
+    callback(el, () => skip = true);
+    if (skip)
+      return;
+    let node = el.firstElementChild;
+    while (node) {
+      walk2(node, callback, false);
+      node = node.nextElementSibling;
+    }
+  }
+
+  // node_modules/alpinejs/src/utils/warn.js
+  function warn2(message, ...args) {
+    console.warn(`Alpine Warning: ${message}`, ...args);
+  }
+
+  // node_modules/alpinejs/src/lifecycle.js
+  var started2 = false;
+  function start2() {
+    if (started2)
+      warn2("Alpine has already been initialized on this page. Calling Alpine.start() more than once can cause problems.");
+    started2 = true;
+    if (!document.body)
+      warn2("Unable to initialize. Trying to load Alpine before `<body>` is available. Did you forget to add `defer` in Alpine's `<script>` tag?");
+    dispatch3(document, "alpine:init");
+    dispatch3(document, "alpine:initializing");
+    startObservingMutations2();
+    onElAdded2((el) => initTree2(el, walk2));
+    onElRemoved2((el) => destroyTree2(el));
+    onAttributesAdded2((el, attrs) => {
+      directives2(el, attrs).forEach((handle) => handle());
+    });
+    let outNestedComponents = (el) => !closestRoot2(el.parentElement, true);
+    Array.from(document.querySelectorAll(allSelectors2().join(","))).filter(outNestedComponents).forEach((el) => {
+      initTree2(el);
+    });
+    dispatch3(document, "alpine:initialized");
+    setTimeout(() => {
+      warnAboutMissingPlugins2();
+    });
+  }
+  var rootSelectorCallbacks2 = [];
+  var initSelectorCallbacks2 = [];
+  function rootSelectors2() {
+    return rootSelectorCallbacks2.map((fn) => fn());
+  }
+  function allSelectors2() {
+    return rootSelectorCallbacks2.concat(initSelectorCallbacks2).map((fn) => fn());
+  }
+  function addRootSelector2(selectorCallback) {
+    rootSelectorCallbacks2.push(selectorCallback);
+  }
+  function addInitSelector2(selectorCallback) {
+    initSelectorCallbacks2.push(selectorCallback);
+  }
+  function closestRoot2(el, includeInitSelectors = false) {
+    return findClosest2(el, (element) => {
+      const selectors = includeInitSelectors ? allSelectors2() : rootSelectors2();
+      if (selectors.some((selector) => element.matches(selector)))
+        return true;
+    });
+  }
+  function findClosest2(el, callback) {
+    if (!el)
+      return;
+    if (callback(el))
+      return el;
+    if (el._x_teleportBack)
+      el = el._x_teleportBack;
+    if (!el.parentElement)
+      return;
+    return findClosest2(el.parentElement, callback);
+  }
+  function isRoot2(el) {
+    return rootSelectors2().some((selector) => el.matches(selector));
+  }
+  var initInterceptors3 = [];
+  function interceptInit2(callback) {
+    initInterceptors3.push(callback);
+  }
+  var markerDispenser2 = 1;
+  function initTree2(el, walker = walk2, intercept = () => {
+  }) {
+    if (findClosest2(el, (i) => i._x_ignore))
+      return;
+    deferHandlingDirectives2(() => {
+      walker(el, (el2, skip) => {
+        if (el2._x_marker)
+          return;
+        intercept(el2, skip);
+        initInterceptors3.forEach((i) => i(el2, skip));
+        directives2(el2, el2.attributes).forEach((handle) => handle());
+        if (!el2._x_ignore)
+          el2._x_marker = markerDispenser2++;
+        el2._x_ignore && skip();
+      });
+    });
+  }
+  function destroyTree2(root, walker = walk2) {
+    walker(root, (el) => {
+      cleanupElement2(el);
+      cleanupAttributes2(el);
+      delete el._x_marker;
+    });
+  }
+  function warnAboutMissingPlugins2() {
+    let pluginDirectives = [
+      ["ui", "dialog", ["[x-dialog], [x-popover]"]],
+      ["anchor", "anchor", ["[x-anchor]"]],
+      ["sort", "sort", ["[x-sort]"]]
+    ];
+    pluginDirectives.forEach(([plugin3, directive4, selectors]) => {
+      if (directiveExists2(directive4))
+        return;
+      selectors.some((selector) => {
+        if (document.querySelector(selector)) {
+          warn2(`found "${selector}", but missing ${plugin3} plugin`);
+          return true;
+        }
+      });
+    });
+  }
+
+  // node_modules/alpinejs/src/nextTick.js
+  var tickStack2 = [];
+  var isHolding2 = false;
+  function nextTick2(callback = () => {
+  }) {
+    queueMicrotask(() => {
+      isHolding2 || setTimeout(() => {
+        releaseNextTicks2();
+      });
+    });
+    return new Promise((res) => {
+      tickStack2.push(() => {
+        callback();
+        res();
+      });
+    });
+  }
+  function releaseNextTicks2() {
+    isHolding2 = false;
+    while (tickStack2.length)
+      tickStack2.shift()();
+  }
+  function holdNextTicks2() {
+    isHolding2 = true;
+  }
+
+  // node_modules/alpinejs/src/utils/classes.js
+  function setClasses2(el, value) {
+    if (Array.isArray(value)) {
+      return setClassesFromString2(el, value.join(" "));
+    } else if (typeof value === "object" && value !== null) {
+      return setClassesFromObject2(el, value);
+    } else if (typeof value === "function") {
+      return setClasses2(el, value());
+    }
+    return setClassesFromString2(el, value);
+  }
+  function setClassesFromString2(el, classString) {
+    let split = (classString2) => classString2.split(" ").filter(Boolean);
+    let missingClasses = (classString2) => classString2.split(" ").filter((i) => !el.classList.contains(i)).filter(Boolean);
+    let addClassesAndReturnUndo = (classes) => {
+      el.classList.add(...classes);
+      return () => {
+        el.classList.remove(...classes);
+      };
+    };
+    classString = classString === true ? classString = "" : classString || "";
+    return addClassesAndReturnUndo(missingClasses(classString));
+  }
+  function setClassesFromObject2(el, classObject) {
+    let split = (classString) => classString.split(" ").filter(Boolean);
+    let forAdd = Object.entries(classObject).flatMap(([classString, bool]) => bool ? split(classString) : false).filter(Boolean);
+    let forRemove = Object.entries(classObject).flatMap(([classString, bool]) => !bool ? split(classString) : false).filter(Boolean);
+    let added = [];
+    let removed = [];
+    forRemove.forEach((i) => {
+      if (el.classList.contains(i)) {
+        el.classList.remove(i);
+        removed.push(i);
+      }
+    });
+    forAdd.forEach((i) => {
+      if (!el.classList.contains(i)) {
+        el.classList.add(i);
+        added.push(i);
+      }
+    });
+    return () => {
+      removed.forEach((i) => el.classList.add(i));
+      added.forEach((i) => el.classList.remove(i));
+    };
+  }
+
+  // node_modules/alpinejs/src/utils/styles.js
+  function setStyles2(el, value) {
+    if (typeof value === "object" && value !== null) {
+      return setStylesFromObject2(el, value);
+    }
+    return setStylesFromString2(el, value);
+  }
+  function setStylesFromObject2(el, value) {
+    let previousStyles = {};
+    Object.entries(value).forEach(([key, value2]) => {
+      previousStyles[key] = el.style[key];
+      if (!key.startsWith("--")) {
+        key = kebabCase3(key);
+      }
+      el.style.setProperty(key, value2);
+    });
+    setTimeout(() => {
+      if (el.style.length === 0) {
+        el.removeAttribute("style");
+      }
+    });
+    return () => {
+      setStyles2(el, previousStyles);
+    };
+  }
+  function setStylesFromString2(el, value) {
+    let cache = el.getAttribute("style", value);
+    el.setAttribute("style", value);
+    return () => {
+      el.setAttribute("style", cache || "");
+    };
+  }
+  function kebabCase3(subject) {
+    return subject.replace(/([a-z])([A-Z])/g, "$1-$2").toLowerCase();
+  }
+
+  // node_modules/alpinejs/src/utils/once.js
+  function once2(callback, fallback2 = () => {
+  }) {
+    let called = false;
+    return function() {
+      if (!called) {
+        called = true;
+        callback.apply(this, arguments);
+      } else {
+        fallback2.apply(this, arguments);
+      }
+    };
+  }
+
+  // node_modules/alpinejs/src/directives/x-transition.js
+  directive2("transition", (el, { value, modifiers, expression }, { evaluate: evaluate4 }) => {
+    if (typeof expression === "function")
+      expression = evaluate4(expression);
+    if (expression === false)
+      return;
+    if (!expression || typeof expression === "boolean") {
+      registerTransitionsFromHelper2(el, modifiers, value);
+    } else {
+      registerTransitionsFromClassString2(el, expression, value);
+    }
+  });
+  function registerTransitionsFromClassString2(el, classString, stage) {
+    registerTransitionObject2(el, setClasses2, "");
+    let directiveStorageMap = {
+      "enter": (classes) => {
+        el._x_transition.enter.during = classes;
+      },
+      "enter-start": (classes) => {
+        el._x_transition.enter.start = classes;
+      },
+      "enter-end": (classes) => {
+        el._x_transition.enter.end = classes;
+      },
+      "leave": (classes) => {
+        el._x_transition.leave.during = classes;
+      },
+      "leave-start": (classes) => {
+        el._x_transition.leave.start = classes;
+      },
+      "leave-end": (classes) => {
+        el._x_transition.leave.end = classes;
+      }
+    };
+    directiveStorageMap[stage](classString);
+  }
+  function registerTransitionsFromHelper2(el, modifiers, stage) {
+    registerTransitionObject2(el, setStyles2);
+    let doesntSpecify = !modifiers.includes("in") && !modifiers.includes("out") && !stage;
+    let transitioningIn = doesntSpecify || modifiers.includes("in") || ["enter"].includes(stage);
+    let transitioningOut = doesntSpecify || modifiers.includes("out") || ["leave"].includes(stage);
+    if (modifiers.includes("in") && !doesntSpecify) {
+      modifiers = modifiers.filter((i, index) => index < modifiers.indexOf("out"));
+    }
+    if (modifiers.includes("out") && !doesntSpecify) {
+      modifiers = modifiers.filter((i, index) => index > modifiers.indexOf("out"));
+    }
+    let wantsAll = !modifiers.includes("opacity") && !modifiers.includes("scale");
+    let wantsOpacity = wantsAll || modifiers.includes("opacity");
+    let wantsScale = wantsAll || modifiers.includes("scale");
+    let opacityValue = wantsOpacity ? 0 : 1;
+    let scaleValue = wantsScale ? modifierValue2(modifiers, "scale", 95) / 100 : 1;
+    let delay3 = modifierValue2(modifiers, "delay", 0) / 1e3;
+    let origin = modifierValue2(modifiers, "origin", "center");
+    let property = "opacity, transform";
+    let durationIn = modifierValue2(modifiers, "duration", 150) / 1e3;
+    let durationOut = modifierValue2(modifiers, "duration", 75) / 1e3;
+    let easing = `cubic-bezier(0.4, 0.0, 0.2, 1)`;
+    if (transitioningIn) {
+      el._x_transition.enter.during = {
+        transformOrigin: origin,
+        transitionDelay: `${delay3}s`,
+        transitionProperty: property,
+        transitionDuration: `${durationIn}s`,
+        transitionTimingFunction: easing
+      };
+      el._x_transition.enter.start = {
+        opacity: opacityValue,
+        transform: `scale(${scaleValue})`
+      };
+      el._x_transition.enter.end = {
+        opacity: 1,
+        transform: `scale(1)`
+      };
+    }
+    if (transitioningOut) {
+      el._x_transition.leave.during = {
+        transformOrigin: origin,
+        transitionDelay: `${delay3}s`,
+        transitionProperty: property,
+        transitionDuration: `${durationOut}s`,
+        transitionTimingFunction: easing
+      };
+      el._x_transition.leave.start = {
+        opacity: 1,
+        transform: `scale(1)`
+      };
+      el._x_transition.leave.end = {
+        opacity: opacityValue,
+        transform: `scale(${scaleValue})`
+      };
+    }
+  }
+  function registerTransitionObject2(el, setFunction, defaultValue = {}) {
+    if (!el._x_transition)
+      el._x_transition = {
+        enter: { during: defaultValue, start: defaultValue, end: defaultValue },
+        leave: { during: defaultValue, start: defaultValue, end: defaultValue },
+        in(before = () => {
+        }, after = () => {
+        }) {
+          transition2(el, setFunction, {
+            during: this.enter.during,
+            start: this.enter.start,
+            end: this.enter.end
+          }, before, after);
+        },
+        out(before = () => {
+        }, after = () => {
+        }) {
+          transition2(el, setFunction, {
+            during: this.leave.during,
+            start: this.leave.start,
+            end: this.leave.end
+          }, before, after);
+        }
+      };
+  }
+  window.Element.prototype._x_toggleAndCascadeWithTransitions = function(el, value, show, hide) {
+    const nextTick3 = document.visibilityState === "visible" ? requestAnimationFrame : setTimeout;
+    let clickAwayCompatibleShow = () => nextTick3(show);
+    if (value) {
+      if (el._x_transition && (el._x_transition.enter || el._x_transition.leave)) {
+        el._x_transition.enter && (Object.entries(el._x_transition.enter.during).length || Object.entries(el._x_transition.enter.start).length || Object.entries(el._x_transition.enter.end).length) ? el._x_transition.in(show) : clickAwayCompatibleShow();
+      } else {
+        el._x_transition ? el._x_transition.in(show) : clickAwayCompatibleShow();
+      }
+      return;
+    }
+    el._x_hidePromise = el._x_transition ? new Promise((resolve, reject) => {
+      el._x_transition.out(() => {
+      }, () => resolve(hide));
+      el._x_transitioning && el._x_transitioning.beforeCancel(() => reject({ isFromCancelledTransition: true }));
+    }) : Promise.resolve(hide);
+    queueMicrotask(() => {
+      let closest = closestHide2(el);
+      if (closest) {
+        if (!closest._x_hideChildren)
+          closest._x_hideChildren = [];
+        closest._x_hideChildren.push(el);
+      } else {
+        nextTick3(() => {
+          let hideAfterChildren = (el2) => {
+            let carry = Promise.all([
+              el2._x_hidePromise,
+              ...(el2._x_hideChildren || []).map(hideAfterChildren)
+            ]).then(([i]) => i?.());
+            delete el2._x_hidePromise;
+            delete el2._x_hideChildren;
+            return carry;
+          };
+          hideAfterChildren(el).catch((e) => {
+            if (!e.isFromCancelledTransition)
+              throw e;
+          });
+        });
+      }
+    });
+  };
+  function closestHide2(el) {
+    let parent = el.parentNode;
+    if (!parent)
+      return;
+    return parent._x_hidePromise ? parent : closestHide2(parent);
+  }
+  function transition2(el, setFunction, { during, start: start4, end } = {}, before = () => {
+  }, after = () => {
+  }) {
+    if (el._x_transitioning)
+      el._x_transitioning.cancel();
+    if (Object.keys(during).length === 0 && Object.keys(start4).length === 0 && Object.keys(end).length === 0) {
+      before();
+      after();
+      return;
+    }
+    let undoStart, undoDuring, undoEnd;
+    performTransition2(el, {
+      start() {
+        undoStart = setFunction(el, start4);
+      },
+      during() {
+        undoDuring = setFunction(el, during);
+      },
+      before,
+      end() {
+        undoStart();
+        undoEnd = setFunction(el, end);
+      },
+      after,
+      cleanup() {
+        undoDuring();
+        undoEnd();
+      }
+    });
+  }
+  function performTransition2(el, stages) {
+    let interrupted, reachedBefore, reachedEnd;
+    let finish = once2(() => {
+      mutateDom2(() => {
+        interrupted = true;
+        if (!reachedBefore)
+          stages.before();
+        if (!reachedEnd) {
+          stages.end();
+          releaseNextTicks2();
+        }
+        stages.after();
+        if (el.isConnected)
+          stages.cleanup();
+        delete el._x_transitioning;
+      });
+    });
+    el._x_transitioning = {
+      beforeCancels: [],
+      beforeCancel(callback) {
+        this.beforeCancels.push(callback);
+      },
+      cancel: once2(function() {
+        while (this.beforeCancels.length) {
+          this.beforeCancels.shift()();
+        }
+        ;
+        finish();
+      }),
+      finish
+    };
+    mutateDom2(() => {
+      stages.start();
+      stages.during();
+    });
+    holdNextTicks2();
+    requestAnimationFrame(() => {
+      if (interrupted)
+        return;
+      let duration = Number(getComputedStyle(el).transitionDuration.replace(/,.*/, "").replace("s", "")) * 1e3;
+      let delay3 = Number(getComputedStyle(el).transitionDelay.replace(/,.*/, "").replace("s", "")) * 1e3;
+      if (duration === 0)
+        duration = Number(getComputedStyle(el).animationDuration.replace("s", "")) * 1e3;
+      mutateDom2(() => {
+        stages.before();
+      });
+      reachedBefore = true;
+      requestAnimationFrame(() => {
+        if (interrupted)
+          return;
+        mutateDom2(() => {
+          stages.end();
+        });
+        releaseNextTicks2();
+        setTimeout(el._x_transitioning.finish, duration + delay3);
+        reachedEnd = true;
+      });
+    });
+  }
+  function modifierValue2(modifiers, key, fallback2) {
+    if (modifiers.indexOf(key) === -1)
+      return fallback2;
+    const rawValue = modifiers[modifiers.indexOf(key) + 1];
+    if (!rawValue)
+      return fallback2;
+    if (key === "scale") {
+      if (isNaN(rawValue))
+        return fallback2;
+    }
+    if (key === "duration" || key === "delay") {
+      let match = rawValue.match(/([0-9]+)ms/);
+      if (match)
+        return match[1];
+    }
+    if (key === "origin") {
+      if (["top", "right", "left", "center", "bottom"].includes(modifiers[modifiers.indexOf(key) + 2])) {
+        return [rawValue, modifiers[modifiers.indexOf(key) + 2]].join(" ");
+      }
+    }
+    return rawValue;
+  }
+
+  // node_modules/alpinejs/src/clone.js
+  var isCloning2 = false;
+  function skipDuringClone2(callback, fallback2 = () => {
+  }) {
+    return (...args) => isCloning2 ? fallback2(...args) : callback(...args);
+  }
+  function onlyDuringClone2(callback) {
+    return (...args) => isCloning2 && callback(...args);
+  }
+  var interceptors2 = [];
+  function interceptClone2(callback) {
+    interceptors2.push(callback);
+  }
+  function cloneNode2(from, to) {
+    interceptors2.forEach((i) => i(from, to));
+    isCloning2 = true;
+    dontRegisterReactiveSideEffects2(() => {
+      initTree2(to, (el, callback) => {
+        callback(el, () => {
+        });
+      });
+    });
+    isCloning2 = false;
+  }
+  var isCloningLegacy2 = false;
+  function clone2(oldEl, newEl) {
+    if (!newEl._x_dataStack)
+      newEl._x_dataStack = oldEl._x_dataStack;
+    isCloning2 = true;
+    isCloningLegacy2 = true;
+    dontRegisterReactiveSideEffects2(() => {
+      cloneTree2(newEl);
+    });
+    isCloning2 = false;
+    isCloningLegacy2 = false;
+  }
+  function cloneTree2(el) {
+    let hasRunThroughFirstEl = false;
+    let shallowWalker = (el2, callback) => {
+      walk2(el2, (el3, skip) => {
+        if (hasRunThroughFirstEl && isRoot2(el3))
+          return skip();
+        hasRunThroughFirstEl = true;
+        callback(el3, skip);
+      });
+    };
+    initTree2(el, shallowWalker);
+  }
+  function dontRegisterReactiveSideEffects2(callback) {
+    let cache = effect3;
+    overrideEffect2((callback2, el) => {
+      let storedEffect = cache(callback2);
+      release2(storedEffect);
+      return () => {
+      };
+    });
+    callback();
+    overrideEffect2(cache);
+  }
+
+  // node_modules/alpinejs/src/interceptor.js
+  function initInterceptors4(data3) {
+    let isObject3 = (val) => typeof val === "object" && !Array.isArray(val) && val !== null;
+    let recurse = (obj, basePath = "") => {
+      Object.entries(Object.getOwnPropertyDescriptors(obj)).forEach(([key, { value, enumerable }]) => {
+        if (enumerable === false || value === void 0)
+          return;
+        if (typeof value === "object" && value !== null && value.__v_skip)
+          return;
+        let path = basePath === "" ? key : `${basePath}.${key}`;
+        if (typeof value === "object" && value !== null && value._x_interceptor) {
+          obj[key] = value.initialize(data3, path, key);
+        } else {
+          if (isObject3(value) && value !== obj && !(value instanceof Element)) {
+            recurse(value, path);
+          }
+        }
+      });
+    };
+    return recurse(data3);
+  }
+  function interceptor2(callback, mutateObj = () => {
+  }) {
+    let obj = {
+      initialValue: void 0,
+      _x_interceptor: true,
+      initialize(data3, path, key) {
+        return callback(this.initialValue, () => get3(data3, path), (value) => set3(data3, path, value), path, key);
+      }
+    };
+    mutateObj(obj);
+    return (initialValue) => {
+      if (typeof initialValue === "object" && initialValue !== null && initialValue._x_interceptor) {
+        let initialize = obj.initialize.bind(obj);
+        obj.initialize = (data3, path, key) => {
+          let innerValue = initialValue.initialize(data3, path, key);
+          obj.initialValue = innerValue;
+          return initialize(data3, path, key);
+        };
+      } else {
+        obj.initialValue = initialValue;
+      }
+      return obj;
+    };
+  }
+  function get3(obj, path) {
+    return path.split(".").reduce((carry, segment) => carry[segment], obj);
+  }
+  function set3(obj, path, value) {
+    if (typeof path === "string")
+      path = path.split(".");
+    if (path.length === 1)
+      obj[path[0]] = value;
+    else if (path.length === 0)
+      throw error;
+    else {
+      if (obj[path[0]])
+        return set3(obj[path[0]], path.slice(1), value);
+      else {
+        obj[path[0]] = {};
+        return set3(obj[path[0]], path.slice(1), value);
+      }
+    }
+  }
+
+  // node_modules/alpinejs/src/utils/bind.js
+  var booleanAttributes2 = /* @__PURE__ */ new Set([
+    "allowfullscreen",
+    "async",
+    "autofocus",
+    "autoplay",
+    "checked",
+    "controls",
+    "default",
+    "defer",
+    "disabled",
+    "formnovalidate",
+    "inert",
+    "ismap",
+    "itemscope",
+    "loop",
+    "multiple",
+    "muted",
+    "nomodule",
+    "novalidate",
+    "open",
+    "playsinline",
+    "readonly",
+    "required",
+    "reversed",
+    "selected",
+    "shadowrootclonable",
+    "shadowrootdelegatesfocus",
+    "shadowrootserializable"
+  ]);
+  function isBooleanAttr3(attrName) {
+    return booleanAttributes2.has(attrName);
+  }
+  function getBinding2(el, name, fallback2) {
+    if (el._x_bindings && el._x_bindings[name] !== void 0)
+      return el._x_bindings[name];
+    return getAttributeBinding2(el, name, fallback2);
+  }
+  function extractProp2(el, name, fallback2, extract = true) {
+    if (el._x_bindings && el._x_bindings[name] !== void 0)
+      return el._x_bindings[name];
+    if (el._x_inlineBindings && el._x_inlineBindings[name] !== void 0) {
+      let binding = el._x_inlineBindings[name];
+      binding.extract = extract;
+      return dontAutoEvaluateFunctions2(() => {
+        return evaluate2(el, binding.expression);
+      });
+    }
+    return getAttributeBinding2(el, name, fallback2);
+  }
+  function getAttributeBinding2(el, name, fallback2) {
+    let attr = el.getAttribute(name);
+    if (attr === null)
+      return typeof fallback2 === "function" ? fallback2() : fallback2;
+    if (attr === "")
+      return true;
+    if (isBooleanAttr3(name)) {
+      return !![name, "true"].includes(attr);
+    }
+    return attr;
+  }
+
+  // node_modules/alpinejs/src/utils/debounce.js
+  function debounce2(func, wait) {
+    var timeout;
+    return function() {
+      var context = this, args = arguments;
+      var later = function() {
+        timeout = null;
+        func.apply(context, args);
+      };
+      clearTimeout(timeout);
+      timeout = setTimeout(later, wait);
+    };
+  }
+
+  // node_modules/alpinejs/src/utils/throttle.js
+  function throttle2(func, limit) {
+    let inThrottle;
+    return function() {
+      let context = this, args = arguments;
+      if (!inThrottle) {
+        func.apply(context, args);
+        inThrottle = true;
+        setTimeout(() => inThrottle = false, limit);
+      }
+    };
+  }
+
+  // node_modules/alpinejs/src/entangle.js
+  function entangle2({ get: outerGet, set: outerSet }, { get: innerGet, set: innerSet }) {
+    let firstRun = true;
+    let outerHash;
+    let innerHash;
+    let reference = effect3(() => {
+      let outer = outerGet();
+      let inner = innerGet();
+      if (firstRun) {
+        innerSet(cloneIfObject2(outer));
+        firstRun = false;
+      } else {
+        let outerHashLatest = JSON.stringify(outer);
+        let innerHashLatest = JSON.stringify(inner);
+        if (outerHashLatest !== outerHash) {
+          innerSet(cloneIfObject2(outer));
+        } else if (outerHashLatest !== innerHashLatest) {
+          outerSet(cloneIfObject2(inner));
+        } else {
+        }
+      }
+      outerHash = JSON.stringify(outerGet());
+      innerHash = JSON.stringify(innerGet());
+    });
+    return () => {
+      release2(reference);
+    };
+  }
+  function cloneIfObject2(value) {
+    return typeof value === "object" ? JSON.parse(JSON.stringify(value)) : value;
+  }
+
+  // node_modules/alpinejs/src/plugin.js
+  function plugin2(callback) {
+    let callbacks = Array.isArray(callback) ? callback : [callback];
+    callbacks.forEach((i) => i(alpine_default2));
+  }
+
+  // node_modules/alpinejs/src/store.js
+  var stores2 = {};
+  var isReactive2 = false;
+  function store2(name, value) {
+    if (!isReactive2) {
+      stores2 = reactive3(stores2);
+      isReactive2 = true;
+    }
+    if (value === void 0) {
+      return stores2[name];
+    }
+    stores2[name] = value;
+    initInterceptors4(stores2[name]);
+    if (typeof value === "object" && value !== null && value.hasOwnProperty("init") && typeof value.init === "function") {
+      stores2[name].init();
+    }
+  }
+
+  // node_modules/alpinejs/src/binds.js
+  var binds2 = {};
+  function bind3(name, bindings) {
+    let getBindings = typeof bindings !== "function" ? () => bindings : bindings;
+    if (name instanceof Element) {
+      return applyBindingsObject2(name, getBindings());
+    } else {
+      binds2[name] = getBindings;
+    }
+    return () => {
+    };
+  }
+  function applyBindingsObject2(el, obj, original) {
+    let cleanupRunners = [];
+    while (cleanupRunners.length)
+      cleanupRunners.pop()();
+    let attributes = Object.entries(obj).map(([name, value]) => ({ name, value }));
+    let staticAttributes = attributesOnly2(attributes);
+    attributes = attributes.map((attribute) => {
+      if (staticAttributes.find((attr) => attr.name === attribute.name)) {
+        return {
+          name: `x-bind:${attribute.name}`,
+          value: `"${attribute.value}"`
+        };
+      }
+      return attribute;
+    });
+    directives2(el, attributes, original).map((handle) => {
+      cleanupRunners.push(handle.runCleanups);
+      handle();
+    });
+    return () => {
+      while (cleanupRunners.length)
+        cleanupRunners.pop()();
+    };
+  }
+
+  // node_modules/alpinejs/src/datas.js
+  var datas2 = {};
+  function data2(name, callback) {
+    datas2[name] = callback;
+  }
+
+  // node_modules/alpinejs/src/alpine.js
+  var Alpine3 = {
+    get reactive() {
+      return reactive3;
+    },
+    get release() {
+      return release2;
+    },
+    get effect() {
+      return effect3;
+    },
+    get raw() {
+      return raw2;
+    },
+    version: ALPINE_VERSION,
+    flushAndStopDeferringMutations: flushAndStopDeferringMutations2,
+    dontAutoEvaluateFunctions: dontAutoEvaluateFunctions2,
+    disableEffectScheduling: disableEffectScheduling2,
+    startObservingMutations: startObservingMutations2,
+    stopObservingMutations: stopObservingMutations2,
+    setReactivityEngine: setReactivityEngine2,
+    onAttributeRemoved: onAttributeRemoved2,
+    onAttributesAdded: onAttributesAdded2,
+    closestDataStack: closestDataStack2,
+    skipDuringClone: skipDuringClone2,
+    onlyDuringClone: onlyDuringClone2,
+    addRootSelector: addRootSelector2,
+    addInitSelector: addInitSelector2,
+    interceptClone: interceptClone2,
+    addScopeToNode: addScopeToNode2,
+    deferMutations: deferMutations2,
+    mapAttributes: mapAttributes2,
+    evaluateLater: evaluateLater2,
+    interceptInit: interceptInit2,
+    setEvaluator: setEvaluator2,
+    mergeProxies: mergeProxies2,
+    extractProp: extractProp2,
+    findClosest: findClosest2,
+    onElRemoved: onElRemoved2,
+    closestRoot: closestRoot2,
+    destroyTree: destroyTree2,
+    interceptor: interceptor2,
+    transition: transition2,
+    setStyles: setStyles2,
+    mutateDom: mutateDom2,
+    directive: directive2,
+    entangle: entangle2,
+    throttle: throttle2,
+    debounce: debounce2,
+    evaluate: evaluate2,
+    initTree: initTree2,
+    nextTick: nextTick2,
+    prefixed: prefix2,
+    prefix: setPrefix2,
+    plugin: plugin2,
+    magic: magic2,
+    store: store2,
+    start: start2,
+    clone: clone2,
+    cloneNode: cloneNode2,
+    bound: getBinding2,
+    $data: scope2,
+    watch: watch2,
+    walk: walk2,
+    data: data2,
+    bind: bind3
+  };
+  var alpine_default2 = Alpine3;
+
+  // node_modules/alpinejs/src/directives.js
+  var prefixAsString2 = "x-";
+  function prefix2(subject = "") {
+    return prefixAsString2 + subject;
+  }
+  function setPrefix2(newPrefix) {
+    prefixAsString2 = newPrefix;
+  }
+  var directiveHandlers2 = {};
+  function directive2(name, callback) {
+    directiveHandlers2[name] = callback;
+    return {
+      before(directive4) {
+        if (!directiveHandlers2[directive4]) {
+          console.warn(String.raw`Cannot find directive \`${directive4}\`. \`${name}\` will use the default order of execution`);
+          return;
+        }
+        const pos = directiveOrder2.indexOf(directive4);
+        directiveOrder2.splice(pos >= 0 ? pos : directiveOrder2.indexOf("DEFAULT"), 0, name);
+      }
+    };
+  }
+  function directiveExists2(name) {
+    return Object.keys(directiveHandlers2).includes(name);
+  }
+  function directives2(el, attributes, originalAttributeOverride) {
+    attributes = Array.from(attributes);
+    if (el._x_virtualDirectives) {
+      let vAttributes = Object.entries(el._x_virtualDirectives).map(([name, value]) => ({ name, value }));
+      let staticAttributes = attributesOnly2(vAttributes);
+      vAttributes = vAttributes.map((attribute) => {
+        if (staticAttributes.find((attr) => attr.name === attribute.name)) {
+          return {
+            name: `x-bind:${attribute.name}`,
+            value: `"${attribute.value}"`
+          };
+        }
+        return attribute;
+      });
+      attributes = attributes.concat(vAttributes);
+    }
+    let transformedAttributeMap = {};
+    let directives3 = attributes.map(toTransformedAttributes2((newName, oldName) => transformedAttributeMap[newName] = oldName)).filter(outNonAlpineAttributes2).map(toParsedDirectives2(transformedAttributeMap, originalAttributeOverride)).sort(byPriority2);
+    return directives3.map((directive4) => {
+      return getDirectiveHandler2(el, directive4);
+    });
+  }
+  function attributesOnly2(attributes) {
+    return Array.from(attributes).map(toTransformedAttributes2()).filter((attr) => !outNonAlpineAttributes2(attr));
+  }
+  var isDeferringHandlers2 = false;
+  var directiveHandlerStacks2 = /* @__PURE__ */ new Map();
+  var currentHandlerStackKey2 = Symbol();
+  function deferHandlingDirectives2(callback) {
+    isDeferringHandlers2 = true;
+    let key = Symbol();
+    currentHandlerStackKey2 = key;
+    directiveHandlerStacks2.set(key, []);
+    let flushHandlers = () => {
+      while (directiveHandlerStacks2.get(key).length)
+        directiveHandlerStacks2.get(key).shift()();
+      directiveHandlerStacks2.delete(key);
+    };
+    let stopDeferring = () => {
+      isDeferringHandlers2 = false;
+      flushHandlers();
+    };
+    callback(flushHandlers);
+    stopDeferring();
+  }
+  function getElementBoundUtilities2(el) {
+    let cleanups2 = [];
+    let cleanup2 = (callback) => cleanups2.push(callback);
+    let [effect4, cleanupEffect] = elementBoundEffect2(el);
+    cleanups2.push(cleanupEffect);
+    let utilities = {
+      Alpine: alpine_default2,
+      effect: effect4,
+      cleanup: cleanup2,
+      evaluateLater: evaluateLater2.bind(evaluateLater2, el),
+      evaluate: evaluate2.bind(evaluate2, el)
+    };
+    let doCleanup = () => cleanups2.forEach((i) => i());
+    return [utilities, doCleanup];
+  }
+  function getDirectiveHandler2(el, directive4) {
+    let noop = () => {
+    };
+    let handler4 = directiveHandlers2[directive4.type] || noop;
+    let [utilities, cleanup2] = getElementBoundUtilities2(el);
+    onAttributeRemoved2(el, directive4.original, cleanup2);
+    let fullHandler = () => {
+      if (el._x_ignore || el._x_ignoreSelf)
+        return;
+      handler4.inline && handler4.inline(el, directive4, utilities);
+      handler4 = handler4.bind(handler4, el, directive4, utilities);
+      isDeferringHandlers2 ? directiveHandlerStacks2.get(currentHandlerStackKey2).push(handler4) : handler4();
+    };
+    fullHandler.runCleanups = cleanup2;
+    return fullHandler;
+  }
+  function toTransformedAttributes2(callback = () => {
+  }) {
+    return ({ name, value }) => {
+      let { name: newName, value: newValue } = attributeTransformers2.reduce((carry, transform) => {
+        return transform(carry);
+      }, { name, value });
+      if (newName !== name)
+        callback(newName, name);
+      return { name: newName, value: newValue };
+    };
+  }
+  var attributeTransformers2 = [];
+  function mapAttributes2(callback) {
+    attributeTransformers2.push(callback);
+  }
+  function outNonAlpineAttributes2({ name }) {
+    return alpineAttributeRegex2().test(name);
+  }
+  var alpineAttributeRegex2 = () => new RegExp(`^${prefixAsString2}([^:^.]+)\\b`);
+  function toParsedDirectives2(transformedAttributeMap, originalAttributeOverride) {
+    return ({ name, value }) => {
+      let typeMatch = name.match(alpineAttributeRegex2());
+      let valueMatch = name.match(/:([a-zA-Z0-9\-_:]+)/);
+      let modifiers = name.match(/\.[^.\]]+(?=[^\]]*$)/g) || [];
+      let original = originalAttributeOverride || transformedAttributeMap[name] || name;
+      return {
+        type: typeMatch ? typeMatch[1] : null,
+        value: valueMatch ? valueMatch[1] : null,
+        modifiers: modifiers.map((i) => i.replace(".", "")),
+        expression: value,
+        original
+      };
+    };
+  }
+  var DEFAULT2 = "DEFAULT";
+  var directiveOrder2 = [
+    "ignore",
+    "ref",
+    "data",
+    "id",
+    "anchor",
+    "bind",
+    "init",
+    "for",
+    "model",
+    "modelable",
+    "transition",
+    "show",
+    "if",
+    DEFAULT2,
+    "teleport"
+  ];
+  function byPriority2(a, b) {
+    let typeA = directiveOrder2.indexOf(a.type) === -1 ? DEFAULT2 : a.type;
+    let typeB = directiveOrder2.indexOf(b.type) === -1 ? DEFAULT2 : b.type;
+    return directiveOrder2.indexOf(typeA) - directiveOrder2.indexOf(typeB);
+  }
+
+  // node_modules/alpinejs/src/magics.js
+  var magics2 = {};
+  function magic2(name, callback) {
+    magics2[name] = callback;
+  }
+  function injectMagics2(obj, el) {
+    let memoizedUtilities = getUtilities2(el);
+    Object.entries(magics2).forEach(([name, callback]) => {
+      Object.defineProperty(obj, `$${name}`, {
+        get() {
+          return callback(el, memoizedUtilities);
+        },
+        enumerable: false
+      });
+    });
+    return obj;
+  }
+  function getUtilities2(el) {
+    let [utilities, cleanup2] = getElementBoundUtilities2(el);
+    let utils = { interceptor: interceptor2, ...utilities };
+    onElRemoved2(el, cleanup2);
+    return utils;
+  }
+
+  // node_modules/alpinejs/src/utils/error.js
+  function tryCatch2(el, expression, callback, ...args) {
+    try {
+      return callback(...args);
+    } catch (e) {
+      handleError2(e, el, expression);
+    }
+  }
+  function handleError2(error2, el, expression = void 0) {
+    error2 = Object.assign(error2 ?? { message: "No error message given." }, { el, expression });
+    console.warn(`Alpine Expression Error: ${error2.message}
+
+${expression ? 'Expression: "' + expression + '"\n\n' : ""}`, el);
+    setTimeout(() => {
+      throw error2;
+    }, 0);
+  }
+
+  // node_modules/alpinejs/src/evaluator.js
+  var shouldAutoEvaluateFunctions2 = true;
+  function dontAutoEvaluateFunctions2(callback) {
+    let cache = shouldAutoEvaluateFunctions2;
+    shouldAutoEvaluateFunctions2 = false;
+    let result = callback();
+    shouldAutoEvaluateFunctions2 = cache;
+    return result;
+  }
+  function evaluate2(el, expression, extras = {}) {
+    let result;
+    evaluateLater2(el, expression)((value) => result = value, extras);
+    return result;
+  }
+  function evaluateLater2(...args) {
+    return theEvaluatorFunction2(...args);
+  }
+  var theEvaluatorFunction2 = normalEvaluator2;
+  function setEvaluator2(newEvaluator) {
+    theEvaluatorFunction2 = newEvaluator;
+  }
+  function normalEvaluator2(el, expression) {
+    let overriddenMagics = {};
+    injectMagics2(overriddenMagics, el);
+    let dataStack = [overriddenMagics, ...closestDataStack2(el)];
+    let evaluator = typeof expression === "function" ? generateEvaluatorFromFunction2(dataStack, expression) : generateEvaluatorFromString2(dataStack, expression, el);
+    return tryCatch2.bind(null, el, expression, evaluator);
+  }
+  function generateEvaluatorFromFunction2(dataStack, func) {
+    return (receiver = () => {
+    }, { scope: scope3 = {}, params = [] } = {}) => {
+      let result = func.apply(mergeProxies2([scope3, ...dataStack]), params);
+      runIfTypeOfFunction2(receiver, result);
+    };
+  }
+  var evaluatorMemo2 = {};
+  function generateFunctionFromString2(expression, el) {
+    if (evaluatorMemo2[expression]) {
+      return evaluatorMemo2[expression];
+    }
+    let AsyncFunction = Object.getPrototypeOf(async function() {
+    }).constructor;
+    let rightSideSafeExpression = /^[\n\s]*if.*\(.*\)/.test(expression.trim()) || /^(let|const)\s/.test(expression.trim()) ? `(async()=>{ ${expression} })()` : expression;
+    const safeAsyncFunction = () => {
+      try {
+        let func2 = new AsyncFunction(["__self", "scope"], `with (scope) { __self.result = ${rightSideSafeExpression} }; __self.finished = true; return __self.result;`);
+        Object.defineProperty(func2, "name", {
+          value: `[Alpine] ${expression}`
+        });
+        return func2;
+      } catch (error2) {
+        handleError2(error2, el, expression);
+        return Promise.resolve();
+      }
+    };
+    let func = safeAsyncFunction();
+    evaluatorMemo2[expression] = func;
+    return func;
+  }
+  function generateEvaluatorFromString2(dataStack, expression, el) {
+    let func = generateFunctionFromString2(expression, el);
+    return (receiver = () => {
+    }, { scope: scope3 = {}, params = [] } = {}) => {
+      func.result = void 0;
+      func.finished = false;
+      let completeScope = mergeProxies2([scope3, ...dataStack]);
+      if (typeof func === "function") {
+        let promise = func(func, completeScope).catch((error2) => handleError2(error2, el, expression));
+        if (func.finished) {
+          runIfTypeOfFunction2(receiver, func.result, completeScope, params, el);
+          func.result = void 0;
+        } else {
+          promise.then((result) => {
+            runIfTypeOfFunction2(receiver, result, completeScope, params, el);
+          }).catch((error2) => handleError2(error2, el, expression)).finally(() => func.result = void 0);
+        }
+      }
+    };
+  }
+  function runIfTypeOfFunction2(receiver, value, scope3, params, el) {
+    if (shouldAutoEvaluateFunctions2 && typeof value === "function") {
+      let result = value.apply(scope3, params);
+      if (result instanceof Promise) {
+        result.then((i) => runIfTypeOfFunction2(receiver, i, scope3, params)).catch((error2) => handleError2(error2, el, value));
+      } else {
+        receiver(result);
+      }
+    } else if (typeof value === "object" && value instanceof Promise) {
+      value.then((i) => receiver(i));
+    } else {
+      receiver(value);
+    }
+  }
+
+  // node_modules/@alpinejs/csp/src/evaluator.js
+  function cspEvaluator(el, expression) {
+    let dataStack = generateDataStack(el);
+    if (typeof expression === "function") {
+      return generateEvaluatorFromFunction2(dataStack, expression);
+    }
+    let evaluator = generateEvaluator(el, expression, dataStack);
+    return tryCatch2.bind(null, el, expression, evaluator);
+  }
+  function generateDataStack(el) {
+    let overriddenMagics = {};
+    injectMagics2(overriddenMagics, el);
+    return [overriddenMagics, ...closestDataStack2(el)];
+  }
+  function generateEvaluator(el, expression, dataStack) {
+    return (receiver = () => {
+    }, { scope: scope3 = {}, params = [] } = {}) => {
+      let completeScope = mergeProxies2([scope3, ...dataStack]);
+      let evaluatedExpression = expression.split(".").reduce((currentScope, currentExpression) => {
+        if (currentScope[currentExpression] === void 0) {
+          throwExpressionError(el, expression);
+        }
+        return currentScope[currentExpression];
+      }, completeScope);
+      runIfTypeOfFunction2(receiver, evaluatedExpression, completeScope, params);
+    };
+  }
+  function throwExpressionError(el, expression) {
+    console.warn(`Alpine Error: Alpine is unable to interpret the following expression using the CSP-friendly build:
+
+"${expression}"
+
+Read more about the Alpine's CSP-friendly build restrictions here: https://alpinejs.dev/advanced/csp
+
+`, el);
+  }
+
+  // js/alpine.js
+  function setCspEvaluator() {
+    module_default.setEvaluator(cspEvaluator);
+  }
+  var alpine_default3 = module_default;
 
   // js/features/supportEntangle.js
   function generateEntangleFunction(component, cleanup2) {
@@ -4028,12 +5484,12 @@ Read more about the Alpine's CSP-friendly build restrictions here: https://alpin
       let livewireProperty = name;
       let livewireComponent = component.$wire;
       let livewirePropertyValue = livewireComponent.get(livewireProperty);
-      let interceptor2 = module_default.interceptor((initialValue, getter, setter, path, key) => {
+      let interceptor3 = alpine_default3.interceptor((initialValue, getter, setter, path, key) => {
         if (typeof livewirePropertyValue === "undefined") {
           console.error(`Livewire Entangle Error: Livewire property ['${livewireProperty}'] cannot be found on component: ['${component.name}']`);
           return;
         }
-        let release2 = module_default.entangle({
+        let release3 = alpine_default3.entangle({
           get() {
             return livewireComponent.get(name);
           },
@@ -4048,8 +5504,8 @@ Read more about the Alpine's CSP-friendly build restrictions here: https://alpin
             setter(value);
           }
         });
-        cleanup2(() => release2());
-        return cloneIfObject2(livewireComponent.get(name));
+        cleanup2(() => release3());
+        return cloneIfObject3(livewireComponent.get(name));
       }, (obj) => {
         Object.defineProperty(obj, "live", {
           get() {
@@ -4058,10 +5514,10 @@ Read more about the Alpine's CSP-friendly build restrictions here: https://alpin
           }
         });
       });
-      return interceptor2(livewirePropertyValue);
+      return interceptor3(livewirePropertyValue);
     };
   }
-  function cloneIfObject2(value) {
+  function cloneIfObject3(value) {
     return typeof value === "object" ? JSON.parse(JSON.stringify(value)) : value;
   }
 
@@ -4114,9 +5570,7 @@ Read more about the Alpine's CSP-friendly build restrictions here: https://alpin
   function showHtmlModal(html) {
     let page = document.createElement("html");
     page.innerHTML = html;
-    page.querySelectorAll("a").forEach(
-      (a) => a.setAttribute("target", "_top")
-    );
+    page.querySelectorAll("a").forEach((a) => a.setAttribute("target", "_top"));
     let modal = document.getElementById("livewire-error");
     if (typeof modal != "undefined" && modal != null) {
       modal.innerHTML = "";
@@ -4468,9 +5922,7 @@ Read more about the Alpine's CSP-friendly build restrictions here: https://alpin
     succeed({ status: response.status, json: JSON.parse(content) });
   }
   function handlePageExpiry() {
-    confirm(
-      "This page has expired.\nWould you like to refresh the page?"
-    ) && window.location.reload();
+    confirm("This page has expired.\nWould you like to refresh the page?") && window.location.reload();
   }
   function showFailureModal(content) {
     let html = content;
@@ -4534,7 +5986,7 @@ Read more about the Alpine's CSP-friendly build restrictions here: https://alpin
   function getFallback(component) {
     return fallback(component);
   }
-  module_default.magic("wire", (el, { cleanup: cleanup2 }) => {
+  alpine_default3.magic("wire", (el, { cleanup: cleanup2 }) => {
     let component;
     return new Proxy({}, {
       get(target, property) {
@@ -4554,7 +6006,7 @@ Read more about the Alpine's CSP-friendly build restrictions here: https://alpin
     });
   });
   wireProperty("__instance", (component) => component);
-  wireProperty("$get", (component) => (property, reactive3 = true) => dataGet(reactive3 ? component.reactive : component.ephemeral, property));
+  wireProperty("$get", (component) => (property, reactive4 = true) => dataGet(reactive4 ? component.reactive : component.ephemeral, property));
   wireProperty("$el", (component) => {
     return component.el;
   });
@@ -4582,7 +6034,7 @@ Read more about the Alpine's CSP-friendly build restrictions here: https://alpin
     let getter = () => {
       return dataGet(component.reactive, path);
     };
-    let unwatch = module_default.watch(getter, callback);
+    let unwatch = alpine_default3.watch(getter, callback);
     component.addCleanup(unwatch);
   });
   wireProperty("$refresh", (component) => component.$wire.$commit);
@@ -4598,7 +6050,7 @@ Read more about the Alpine's CSP-friendly build restrictions here: https://alpin
     component.addCleanup(unhook);
     return unhook;
   });
-  wireProperty("$dispatch", (component) => (...params) => dispatch3(component, ...params));
+  wireProperty("$dispatch", (component) => (...params) => dispatch4(component, ...params));
   wireProperty("$dispatchSelf", (component) => (...params) => dispatchSelf(component, ...params));
   wireProperty("$dispatchTo", () => (...params) => dispatchTo(...params));
   wireProperty("$upload", (component) => (...params) => upload(component, ...params));
@@ -4767,13 +6219,13 @@ Read more about the Alpine's CSP-friendly build restrictions here: https://alpin
     return component;
   }
   function closestComponent(el, strict = true) {
-    let closestRoot2 = Alpine.findClosest(el, (i) => i.__livewire);
-    if (!closestRoot2) {
+    let closestRoot3 = Alpine.findClosest(el, (i) => i.__livewire);
+    if (!closestRoot3) {
       if (strict)
         throw "Could not find Livewire component in DOM tree";
       return;
     }
-    return closestRoot2.__livewire;
+    return closestRoot3.__livewire;
   }
   function componentsByName(name) {
     return Object.values(components).filter((component) => {
@@ -4795,7 +6247,7 @@ Read more about the Alpine's CSP-friendly build restrictions here: https://alpin
   }
 
   // js/events.js
-  function dispatch3(component, name, params) {
+  function dispatch4(component, name, params) {
     dispatchEvent(component.el, name, params);
   }
   function dispatchGlobal(name, params) {
@@ -4841,15 +6293,15 @@ Read more about the Alpine's CSP-friendly build restrictions here: https://alpin
     let [value, ...modifiers] = name.replace(new RegExp("wire:"), "").split(".");
     return new Directive(value, modifiers, name, el);
   }
-  function directive2(name, callback) {
+  function directive3(name, callback) {
     if (customDirectiveNames.has(name))
       return;
     customDirectiveNames.add(name);
-    on2("directive.init", ({ el, component, directive: directive3, cleanup: cleanup2 }) => {
-      if (directive3.value === name) {
+    on2("directive.init", ({ el, component, directive: directive4, cleanup: cleanup2 }) => {
+      if (directive4.value === name) {
         callback({
           el,
-          directive: directive3,
+          directive: directive4,
           component,
           $wire: component.$wire,
           cleanup: cleanup2
@@ -4861,9 +6313,9 @@ Read more about the Alpine's CSP-friendly build restrictions here: https://alpin
     if (customDirectiveNames.has(name))
       return;
     customDirectiveNames.add(name);
-    on2("directive.global.init", ({ el, directive: directive3, cleanup: cleanup2 }) => {
-      if (directive3.value === name) {
-        callback({ el, directive: directive3, cleanup: cleanup2 });
+    on2("directive.global.init", ({ el, directive: directive4, cleanup: cleanup2 }) => {
+      if (directive4.value === name) {
+        callback({ el, directive: directive4, cleanup: cleanup2 });
       }
     });
   }
@@ -4882,13 +6334,13 @@ Read more about the Alpine's CSP-friendly build restrictions here: https://alpin
       return this.directives;
     }
     has(value) {
-      return this.directives.map((directive3) => directive3.value).includes(value);
+      return this.directives.map((directive4) => directive4.value).includes(value);
     }
     missing(value) {
       return !this.has(value);
     }
     get(value) {
-      return this.directives.find((directive3) => directive3.value === value);
+      return this.directives.find((directive4) => directive4.value === value);
     }
     extractTypeModifiersAndValue() {
       return Array.from(this.el.getAttributeNames().filter((name) => matchesForLivewireDirective(name)).map((name) => extractDirective(this.el, name)));
@@ -4930,8 +6382,8 @@ Read more about the Alpine's CSP-friendly build restrictions here: https://alpin
   };
 
   // node_modules/@alpinejs/collapse/dist/module.esm.js
-  function src_default2(Alpine3) {
-    Alpine3.directive("collapse", collapse);
+  function src_default2(Alpine4) {
+    Alpine4.directive("collapse", collapse);
     collapse.inline = (el, { modifiers }) => {
       if (!modifiers.includes("min"))
         return;
@@ -4941,8 +6393,8 @@ Read more about the Alpine's CSP-friendly build restrictions here: https://alpin
       };
     };
     function collapse(el, { modifiers }) {
-      let duration = modifierValue2(modifiers, "duration", 250) / 1e3;
-      let floor2 = modifierValue2(modifiers, "min", 0);
+      let duration = modifierValue3(modifiers, "duration", 250) / 1e3;
+      let floor2 = modifierValue3(modifiers, "min", 0);
       let fullyHide = !modifiers.includes("min");
       if (!el._x_isShown)
         el.style.height = `${floor2}px`;
@@ -4951,7 +6403,7 @@ Read more about the Alpine's CSP-friendly build restrictions here: https://alpin
       if (!el._x_isShown)
         el.style.overflow = "hidden";
       let setFunction = (el2, styles) => {
-        let revertFunction = Alpine3.setStyles(el2, styles);
+        let revertFunction = Alpine4.setStyles(el2, styles);
         return styles.height ? () => {
         } : revertFunction;
       };
@@ -4974,7 +6426,7 @@ Read more about the Alpine's CSP-friendly build restrictions here: https://alpin
           if (current === full) {
             current = floor2;
           }
-          Alpine3.transition(el, Alpine3.setStyles, {
+          Alpine4.transition(el, Alpine4.setStyles, {
             during: transitionStyles,
             start: { height: current + "px" },
             end: { height: full + "px" }
@@ -4988,7 +6440,7 @@ Read more about the Alpine's CSP-friendly build restrictions here: https://alpin
         }, after = () => {
         }) {
           let full = el.getBoundingClientRect().height;
-          Alpine3.transition(el, setFunction, {
+          Alpine4.transition(el, setFunction, {
             during: transitionStyles,
             start: { height: full + "px" },
             end: { height: floor2 + "px" }
@@ -5003,7 +6455,7 @@ Read more about the Alpine's CSP-friendly build restrictions here: https://alpin
       };
     }
   }
-  function modifierValue2(modifiers, key, fallback2) {
+  function modifierValue3(modifiers, key, fallback2) {
     if (modifiers.indexOf(key) === -1)
       return fallback2;
     const rawValue = modifiers[modifiers.indexOf(key) + 1];
@@ -5771,14 +7223,14 @@ Read more about the Alpine's CSP-friendly build restrictions here: https://alpin
     trap.updateContainerElements(elements);
     return trap;
   };
-  function src_default3(Alpine3) {
+  function src_default3(Alpine4) {
     let lastFocused;
     let currentFocused;
     window.addEventListener("focusin", () => {
       lastFocused = currentFocused;
       currentFocused = document.activeElement;
     });
-    Alpine3.magic("focus", (el) => {
+    Alpine4.magic("focus", (el) => {
       let within = el;
       return {
         __noscroll: false,
@@ -5882,62 +7334,59 @@ Read more about the Alpine's CSP-friendly build restrictions here: https://alpin
         }
       };
     });
-    Alpine3.directive("trap", Alpine3.skipDuringClone(
-      (el, { expression, modifiers }, { effect: effect3, evaluateLater: evaluateLater2, cleanup: cleanup2 }) => {
-        let evaluator = evaluateLater2(expression);
-        let oldValue = false;
-        let options = {
-          escapeDeactivates: false,
-          allowOutsideClick: true,
-          fallbackFocus: () => el
-        };
-        if (modifiers.includes("noautofocus")) {
-          options.initialFocus = false;
-        } else {
-          let autofocusEl = el.querySelector("[autofocus]");
-          if (autofocusEl)
-            options.initialFocus = autofocusEl;
-        }
-        let trap = createFocusTrap(el, options);
-        let undoInert = () => {
-        };
-        let undoDisableScrolling = () => {
-        };
-        const releaseFocus = () => {
-          undoInert();
-          undoInert = () => {
-          };
-          undoDisableScrolling();
-          undoDisableScrolling = () => {
-          };
-          trap.deactivate({
-            returnFocus: !modifiers.includes("noreturn")
-          });
-        };
-        effect3(() => evaluator((value) => {
-          if (oldValue === value)
-            return;
-          if (value && !oldValue) {
-            if (modifiers.includes("noscroll"))
-              undoDisableScrolling = disableScrolling();
-            if (modifiers.includes("inert"))
-              undoInert = setInert(el);
-            setTimeout(() => {
-              trap.activate();
-            }, 15);
-          }
-          if (!value && oldValue) {
-            releaseFocus();
-          }
-          oldValue = !!value;
-        }));
-        cleanup2(releaseFocus);
-      },
-      (el, { expression, modifiers }, { evaluate: evaluate3 }) => {
-        if (modifiers.includes("inert") && evaluate3(expression))
-          setInert(el);
+    Alpine4.directive("trap", Alpine4.skipDuringClone((el, { expression, modifiers }, { effect: effect4, evaluateLater: evaluateLater3, cleanup: cleanup2 }) => {
+      let evaluator = evaluateLater3(expression);
+      let oldValue = false;
+      let options = {
+        escapeDeactivates: false,
+        allowOutsideClick: true,
+        fallbackFocus: () => el
+      };
+      if (modifiers.includes("noautofocus")) {
+        options.initialFocus = false;
+      } else {
+        let autofocusEl = el.querySelector("[autofocus]");
+        if (autofocusEl)
+          options.initialFocus = autofocusEl;
       }
-    ));
+      let trap = createFocusTrap(el, options);
+      let undoInert = () => {
+      };
+      let undoDisableScrolling = () => {
+      };
+      const releaseFocus = () => {
+        undoInert();
+        undoInert = () => {
+        };
+        undoDisableScrolling();
+        undoDisableScrolling = () => {
+        };
+        trap.deactivate({
+          returnFocus: !modifiers.includes("noreturn")
+        });
+      };
+      effect4(() => evaluator((value) => {
+        if (oldValue === value)
+          return;
+        if (value && !oldValue) {
+          if (modifiers.includes("noscroll"))
+            undoDisableScrolling = disableScrolling();
+          if (modifiers.includes("inert"))
+            undoInert = setInert(el);
+          setTimeout(() => {
+            trap.activate();
+          }, 15);
+        }
+        if (!value && oldValue) {
+          releaseFocus();
+        }
+        oldValue = !!value;
+      }));
+      cleanup2(releaseFocus);
+    }, (el, { expression, modifiers }, { evaluate: evaluate4 }) => {
+      if (modifiers.includes("inert") && evaluate4(expression))
+        setInert(el);
+    }));
   }
   function setInert(el) {
     let undos = [];
@@ -5976,7 +7425,7 @@ Read more about the Alpine's CSP-friendly build restrictions here: https://alpin
   var module_default3 = src_default3;
 
   // node_modules/@alpinejs/persist/dist/module.esm.js
-  function src_default4(Alpine3) {
+  function src_default4(Alpine4) {
     let persist = () => {
       let alias;
       let storage;
@@ -5991,11 +7440,11 @@ Read more about the Alpine's CSP-friendly build restrictions here: https://alpin
           setItem: dummy.set.bind(dummy)
         };
       }
-      return Alpine3.interceptor((initialValue, getter, setter, path, key) => {
+      return Alpine4.interceptor((initialValue, getter, setter, path, key) => {
         let lookup = alias || `_x_${path}`;
         let initial = storageHas(lookup, storage) ? storageGet(lookup, storage) : initialValue;
         setter(initial);
-        Alpine3.effect(() => {
+        Alpine4.effect(() => {
           let value = getter();
           storageSet(lookup, value, storage);
           setter(value);
@@ -6011,15 +7460,15 @@ Read more about the Alpine's CSP-friendly build restrictions here: https://alpin
         };
       });
     };
-    Object.defineProperty(Alpine3, "$persist", { get: () => persist() });
-    Alpine3.magic("persist", persist);
-    Alpine3.persist = (key, { get: get3, set: set3 }, storage = localStorage) => {
-      let initial = storageHas(key, storage) ? storageGet(key, storage) : get3();
-      set3(initial);
-      Alpine3.effect(() => {
-        let value = get3();
+    Object.defineProperty(Alpine4, "$persist", { get: () => persist() });
+    Alpine4.magic("persist", persist);
+    Alpine4.persist = (key, { get: get4, set: set4 }, storage = localStorage) => {
+      let initial = storageHas(key, storage) ? storageGet(key, storage) : get4();
+      set4(initial);
+      Alpine4.effect(() => {
+        let value = get4();
         storageSet(key, value, storage);
-        set3(value);
+        set4(value);
       });
     };
   }
@@ -6038,24 +7487,24 @@ Read more about the Alpine's CSP-friendly build restrictions here: https://alpin
   var module_default4 = src_default4;
 
   // node_modules/@alpinejs/intersect/dist/module.esm.js
-  function src_default5(Alpine3) {
-    Alpine3.directive("intersect", Alpine3.skipDuringClone((el, { value, expression, modifiers }, { evaluateLater: evaluateLater2, cleanup: cleanup2 }) => {
-      let evaluate3 = evaluateLater2(expression);
+  function src_default5(Alpine4) {
+    Alpine4.directive("intersect", Alpine4.skipDuringClone((el, { value, expression, modifiers }, { evaluateLater: evaluateLater3, cleanup: cleanup2 }) => {
+      let evaluate4 = evaluateLater3(expression);
       let options = {
         rootMargin: getRootMargin(modifiers),
         threshold: getThreshold(modifiers)
       };
-      let observer2 = new IntersectionObserver((entries) => {
+      let observer3 = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting === (value === "leave"))
             return;
-          evaluate3();
-          modifiers.includes("once") && observer2.disconnect();
+          evaluate4();
+          modifiers.includes("once") && observer3.disconnect();
         });
       }, options);
-      observer2.observe(el);
+      observer3.observe(el);
       cleanup2(() => {
-        observer2.disconnect();
+        observer3.disconnect();
       });
     }));
   }
@@ -6093,24 +7542,24 @@ Read more about the Alpine's CSP-friendly build restrictions here: https://alpin
   var module_default5 = src_default5;
 
   // node_modules/@alpinejs/resize/dist/module.esm.js
-  function src_default6(Alpine3) {
-    Alpine3.directive("resize", Alpine3.skipDuringClone((el, { value, expression, modifiers }, { evaluateLater: evaluateLater2, cleanup: cleanup2 }) => {
-      let evaluator = evaluateLater2(expression);
-      let evaluate3 = (width, height) => {
+  function src_default6(Alpine4) {
+    Alpine4.directive("resize", Alpine4.skipDuringClone((el, { value, expression, modifiers }, { evaluateLater: evaluateLater3, cleanup: cleanup2 }) => {
+      let evaluator = evaluateLater3(expression);
+      let evaluate4 = (width, height) => {
         evaluator(() => {
         }, { scope: { "$width": width, "$height": height } });
       };
-      let off = modifiers.includes("document") ? onDocumentResize(evaluate3) : onElResize(el, evaluate3);
+      let off = modifiers.includes("document") ? onDocumentResize(evaluate4) : onElResize(el, evaluate4);
       cleanup2(() => off());
     }));
   }
   function onElResize(el, callback) {
-    let observer2 = new ResizeObserver((entries) => {
+    let observer3 = new ResizeObserver((entries) => {
       let [width, height] = dimensions(entries);
       callback(width, height);
     });
-    observer2.observe(el);
-    return () => observer2.disconnect();
+    observer3.observe(el);
+    return () => observer3.disconnect();
   }
   var documentResizeObserver;
   var documentResizeObserverCallbacks = /* @__PURE__ */ new Set();
@@ -6156,10 +7605,10 @@ Read more about the Alpine's CSP-friendly build restrictions here: https://alpin
     start: "end",
     end: "start"
   };
-  function clamp(start3, value, end) {
-    return max(start3, min(value, end));
+  function clamp(start4, value, end) {
+    return max(start4, min(value, end));
   }
-  function evaluate2(value, param) {
+  function evaluate3(value, param) {
     return typeof value === "function" ? value(param) : value;
   }
   function getSide(placement) {
@@ -6342,7 +7791,7 @@ Read more about the Alpine's CSP-friendly build restrictions here: https://alpin
       const {
         x: nextX,
         y: nextY,
-        data: data2,
+        data: data3,
         reset
       } = await fn({
         x,
@@ -6364,7 +7813,7 @@ Read more about the Alpine's CSP-friendly build restrictions here: https://alpin
         ...middlewareData,
         [name]: {
           ...middlewareData[name],
-          ...data2
+          ...data3
         }
       };
       if (reset && resetCount <= 50) {
@@ -6416,7 +7865,7 @@ Read more about the Alpine's CSP-friendly build restrictions here: https://alpin
       elementContext = "floating",
       altBoundary = false,
       padding = 0
-    } = evaluate2(options, state);
+    } = evaluate3(options, state);
     const paddingObject = getPaddingObject(padding);
     const altContext = elementContext === "floating" ? "reference" : "floating";
     const element = elements[altBoundary ? altContext : elementContext];
@@ -6476,7 +7925,7 @@ Read more about the Alpine's CSP-friendly build restrictions here: https://alpin
           fallbackAxisSideDirection = "none",
           flipAlignment = true,
           ...detectOverflowOptions
-        } = evaluate2(options, state);
+        } = evaluate3(options, state);
         if ((_middlewareData$arrow = middlewareData.arrow) != null && _middlewareData$arrow.alignmentOffset) {
           return {};
         }
@@ -6557,7 +8006,7 @@ Read more about the Alpine's CSP-friendly build restrictions here: https://alpin
     const isVertical = getSideAxis(placement) === "y";
     const mainAxisMulti = ["left", "top"].includes(side) ? -1 : 1;
     const crossAxisMulti = rtl && isVertical ? -1 : 1;
-    const rawValue = evaluate2(options, state);
+    const rawValue = evaluate3(options, state);
     let {
       mainAxis,
       crossAxis,
@@ -6633,7 +8082,7 @@ Read more about the Alpine's CSP-friendly build restrictions here: https://alpin
             }
           },
           ...detectOverflowOptions
-        } = evaluate2(options, state);
+        } = evaluate3(options, state);
         const coords = {
           x,
           y
@@ -7311,50 +8760,47 @@ Read more about the Alpine's CSP-friendly build restrictions here: https://alpin
       platform: platformWithCache
     });
   };
-  function src_default7(Alpine3) {
-    Alpine3.magic("anchor", (el) => {
+  function src_default7(Alpine4) {
+    Alpine4.magic("anchor", (el) => {
       if (!el._x_anchor)
         throw "Alpine: No x-anchor directive found on element using $anchor...";
       return el._x_anchor;
     });
-    Alpine3.interceptClone((from, to) => {
+    Alpine4.interceptClone((from, to) => {
       if (from && from._x_anchor && !to._x_anchor) {
         to._x_anchor = from._x_anchor;
       }
     });
-    Alpine3.directive("anchor", Alpine3.skipDuringClone(
-      (el, { expression, modifiers, value }, { cleanup: cleanup2, evaluate: evaluate22 }) => {
-        let { placement, offsetValue, unstyled } = getOptions(modifiers);
-        el._x_anchor = Alpine3.reactive({ x: 0, y: 0 });
-        let reference = evaluate22(expression);
-        if (!reference)
-          throw "Alpine: no element provided to x-anchor...";
-        let compute = () => {
-          let previousValue;
-          computePosition2(reference, el, {
-            placement,
-            middleware: [flip(), shift({ padding: 5 }), offset(offsetValue)]
-          }).then(({ x, y }) => {
-            unstyled || setStyles2(el, x, y);
-            if (JSON.stringify({ x, y }) !== previousValue) {
-              el._x_anchor.x = x;
-              el._x_anchor.y = y;
-            }
-            previousValue = JSON.stringify({ x, y });
-          });
-        };
-        let release2 = autoUpdate(reference, el, () => compute());
-        cleanup2(() => release2());
-      },
-      (el, { expression, modifiers, value }, { cleanup: cleanup2, evaluate: evaluate22 }) => {
-        let { placement, offsetValue, unstyled } = getOptions(modifiers);
-        if (el._x_anchor) {
-          unstyled || setStyles2(el, el._x_anchor.x, el._x_anchor.y);
-        }
+    Alpine4.directive("anchor", Alpine4.skipDuringClone((el, { expression, modifiers, value }, { cleanup: cleanup2, evaluate: evaluate22 }) => {
+      let { placement, offsetValue, unstyled } = getOptions(modifiers);
+      el._x_anchor = Alpine4.reactive({ x: 0, y: 0 });
+      let reference = evaluate22(expression);
+      if (!reference)
+        throw "Alpine: no element provided to x-anchor...";
+      let compute = () => {
+        let previousValue;
+        computePosition2(reference, el, {
+          placement,
+          middleware: [flip(), shift({ padding: 5 }), offset(offsetValue)]
+        }).then(({ x, y }) => {
+          unstyled || setStyles3(el, x, y);
+          if (JSON.stringify({ x, y }) !== previousValue) {
+            el._x_anchor.x = x;
+            el._x_anchor.y = y;
+          }
+          previousValue = JSON.stringify({ x, y });
+        });
+      };
+      let release3 = autoUpdate(reference, el, () => compute());
+      cleanup2(() => release3());
+    }, (el, { expression, modifiers, value }, { cleanup: cleanup2, evaluate: evaluate22 }) => {
+      let { placement, offsetValue, unstyled } = getOptions(modifiers);
+      if (el._x_anchor) {
+        unstyled || setStyles3(el, el._x_anchor.x, el._x_anchor.y);
       }
-    ));
+    }));
   }
-  function setStyles2(el, x, y) {
+  function setStyles3(el, x, y) {
     Object.assign(el.style, {
       left: x + "px",
       top: y + "px",
@@ -7466,9 +8912,7 @@ Read more about the Alpine's CSP-friendly build restrictions here: https://alpin
       snapshotCache.currentUrl = url;
     } catch (error2) {
       if (error2 instanceof DOMException && error2.name === "SecurityError") {
-        console.error(
-          "Livewire: You can't use wire:navigate with a link to a different root domain: " + url
-        );
+        console.error("Livewire: You can't use wire:navigate with a link to a different root domain: " + url);
       }
       console.error(error2);
     }
@@ -7871,9 +9315,7 @@ Read more about the Alpine's CSP-friendly build restrictions here: https://alpin
   function prepNewBodyScriptTagsToRun(newBody, oldBodyScriptTagHashes2) {
     newBody.querySelectorAll("script").forEach((i) => {
       if (i.hasAttribute("data-navigate-once")) {
-        let hash = simpleHash(
-          ignoreAttributes(i.outerHTML, attributesExemptFromScriptTagHashing)
-        );
+        let hash = simpleHash(ignoreAttributes(i.outerHTML, attributesExemptFromScriptTagHashing));
         if (oldBodyScriptTagHashes2.includes(hash))
           return;
       }
@@ -7911,11 +9353,7 @@ Read more about the Alpine's CSP-friendly build restrictions here: https://alpin
           }
           if (isScript(child)) {
             try {
-              remoteScriptsPromises.push(
-                injectScriptTagAndWaitForItToFullyLoad(
-                  cloneScriptTag(child)
-                )
-              );
+              remoteScriptsPromises.push(injectScriptTagAndWaitForItToFullyLoad(cloneScriptTag(child)));
             } catch (error2) {
             }
           } else {
@@ -8002,8 +9440,8 @@ Read more about the Alpine's CSP-friendly build restrictions here: https://alpin
   var showProgressBar = true;
   var restoreScroll = true;
   var autofocus = false;
-  function navigate_default(Alpine3) {
-    Alpine3.navigate = (url) => {
+  function navigate_default(Alpine4) {
+    Alpine4.navigate = (url) => {
       let destination = createUrlObjectFromString(url);
       let prevented = fireEventForOtherLibrariesToHookInto("alpine:navigate", {
         url: destination,
@@ -8014,11 +9452,11 @@ Read more about the Alpine's CSP-friendly build restrictions here: https://alpin
         return;
       navigateTo(destination);
     };
-    Alpine3.navigate.disableProgressBar = () => {
+    Alpine4.navigate.disableProgressBar = () => {
       showProgressBar = false;
     };
-    Alpine3.addInitSelector(() => `[${Alpine3.prefixed("navigate")}]`);
-    Alpine3.directive("navigate", (el, { modifiers }) => {
+    Alpine4.addInitSelector(() => `[${Alpine4.prefixed("navigate")}]`);
+    Alpine4.directive("navigate", (el, { modifiers }) => {
       let shouldPrefetchOnHover = modifiers.includes("hover");
       shouldPrefetchOnHover && whenThisLinkIsHoveredFor(el, 60, () => {
         let destination = extractDestinationFromLink(el);
@@ -8055,7 +9493,7 @@ Read more about the Alpine's CSP-friendly build restrictions here: https://alpin
         showProgressBar && finishAndHideProgressBar();
         cleanupAlpineElementsOnThePageThatArentInsideAPersistedElement();
         updateCurrentPageHtmlInHistoryStateForLaterBackButtonClicks();
-        preventAlpineFromPickingUpDomChanges(Alpine3, (andAfterAllThis) => {
+        preventAlpineFromPickingUpDomChanges(Alpine4, (andAfterAllThis) => {
           enablePersist && storePersistantElementsForLater((persistedEl) => {
             packUpPersistedTeleports(persistedEl);
             packUpPersistedPopovers(persistedEl);
@@ -8077,7 +9515,7 @@ Read more about the Alpine's CSP-friendly build restrictions here: https://alpin
                 setTimeout(() => {
                   autofocus && autofocusElementsWithTheAutofocusAttribute();
                 });
-                nowInitializeAlpineOnTheNewPage(Alpine3);
+                nowInitializeAlpineOnTheNewPage(Alpine4);
                 fireEventForOtherLibrariesToHookInto("alpine:navigated");
               });
             });
@@ -8085,55 +9523,52 @@ Read more about the Alpine's CSP-friendly build restrictions here: https://alpin
         });
       });
     }
-    whenTheBackOrForwardButtonIsClicked(
-      (ifThePageBeingVisitedHasntBeenCached) => {
-        ifThePageBeingVisitedHasntBeenCached((url) => {
-          let destination = createUrlObjectFromString(url);
-          let prevented = fireEventForOtherLibrariesToHookInto("alpine:navigate", {
-            url: destination,
-            history: true,
-            cached: false
-          });
-          if (prevented)
-            return;
-          let shouldPushToHistoryState = false;
-          navigateTo(destination, shouldPushToHistoryState);
-        });
-      },
-      (html, url, currentPageUrl, currentPageKey) => {
+    whenTheBackOrForwardButtonIsClicked((ifThePageBeingVisitedHasntBeenCached) => {
+      ifThePageBeingVisitedHasntBeenCached((url) => {
         let destination = createUrlObjectFromString(url);
         let prevented = fireEventForOtherLibrariesToHookInto("alpine:navigate", {
           url: destination,
           history: true,
-          cached: true
+          cached: false
         });
         if (prevented)
           return;
-        storeScrollInformationInHtmlBeforeNavigatingAway();
-        fireEventForOtherLibrariesToHookInto("alpine:navigating");
-        updateCurrentPageHtmlInSnapshotCacheForLaterBackButtonClicks(currentPageUrl, currentPageKey);
-        preventAlpineFromPickingUpDomChanges(Alpine3, (andAfterAllThis) => {
-          enablePersist && storePersistantElementsForLater((persistedEl) => {
-            packUpPersistedTeleports(persistedEl);
-            packUpPersistedPopovers(persistedEl);
+        let shouldPushToHistoryState = false;
+        navigateTo(destination, shouldPushToHistoryState);
+      });
+    }, (html, url, currentPageUrl, currentPageKey) => {
+      let destination = createUrlObjectFromString(url);
+      let prevented = fireEventForOtherLibrariesToHookInto("alpine:navigate", {
+        url: destination,
+        history: true,
+        cached: true
+      });
+      if (prevented)
+        return;
+      storeScrollInformationInHtmlBeforeNavigatingAway();
+      fireEventForOtherLibrariesToHookInto("alpine:navigating");
+      updateCurrentPageHtmlInSnapshotCacheForLaterBackButtonClicks(currentPageUrl, currentPageKey);
+      preventAlpineFromPickingUpDomChanges(Alpine4, (andAfterAllThis) => {
+        enablePersist && storePersistantElementsForLater((persistedEl) => {
+          packUpPersistedTeleports(persistedEl);
+          packUpPersistedPopovers(persistedEl);
+        });
+        swapCurrentPageWithNewHtml(html, () => {
+          removeAnyLeftOverStaleProgressBars();
+          removeAnyLeftOverStaleTeleportTargets(document.body);
+          enablePersist && putPersistantElementsBack((persistedEl, newStub) => {
+            unPackPersistedTeleports(persistedEl);
+            unPackPersistedPopovers(persistedEl);
           });
-          swapCurrentPageWithNewHtml(html, () => {
-            removeAnyLeftOverStaleProgressBars();
-            removeAnyLeftOverStaleTeleportTargets(document.body);
-            enablePersist && putPersistantElementsBack((persistedEl, newStub) => {
-              unPackPersistedTeleports(persistedEl);
-              unPackPersistedPopovers(persistedEl);
-            });
-            restoreScrollPositionOrScrollToTop();
-            andAfterAllThis(() => {
-              autofocus && autofocusElementsWithTheAutofocusAttribute();
-              nowInitializeAlpineOnTheNewPage(Alpine3);
-              fireEventForOtherLibrariesToHookInto("alpine:navigated");
-            });
+          restoreScrollPositionOrScrollToTop();
+          andAfterAllThis(() => {
+            autofocus && autofocusElementsWithTheAutofocusAttribute();
+            nowInitializeAlpineOnTheNewPage(Alpine4);
+            fireEventForOtherLibrariesToHookInto("alpine:navigated");
           });
         });
-      }
-    );
+      });
+    });
     setTimeout(() => {
       fireEventForOtherLibrariesToHookInto("alpine:navigated");
     });
@@ -8143,10 +9578,10 @@ Read more about the Alpine's CSP-friendly build restrictions here: https://alpin
       fetchHtml(fromDestination, callback);
     });
   }
-  function preventAlpineFromPickingUpDomChanges(Alpine3, callback) {
-    Alpine3.stopObservingMutations();
+  function preventAlpineFromPickingUpDomChanges(Alpine4, callback) {
+    Alpine4.stopObservingMutations();
     callback((afterAllThis) => {
-      Alpine3.startObservingMutations();
+      Alpine4.startObservingMutations();
       queueMicrotask(() => {
         afterAllThis();
       });
@@ -8161,8 +9596,8 @@ Read more about the Alpine's CSP-friendly build restrictions here: https://alpin
     document.dispatchEvent(event);
     return event.defaultPrevented;
   }
-  function nowInitializeAlpineOnTheNewPage(Alpine3) {
-    Alpine3.initTree(document.body, void 0, (el, skip) => {
+  function nowInitializeAlpineOnTheNewPage(Alpine4) {
+    Alpine4.initTree(document.body, void 0, (el, skip) => {
       if (el._x_wasPersisted)
         skip();
     });
@@ -8185,19 +9620,19 @@ Read more about the Alpine's CSP-friendly build restrictions here: https://alpin
   }
 
   // js/plugins/history/index.js
-  function history2(Alpine3) {
-    Alpine3.magic("queryString", (el, { interceptor: interceptor2 }) => {
+  function history2(Alpine4) {
+    Alpine4.magic("queryString", (el, { interceptor: interceptor3 }) => {
       let alias;
       let alwaysShow = false;
       let usePush = false;
-      return interceptor2((initialSeedValue, getter, setter, path, key) => {
+      return interceptor3((initialSeedValue, getter, setter, path, key) => {
         let queryKey = alias || path;
         let { initial, replace: replace2, push: push2, pop } = track2(queryKey, initialSeedValue, alwaysShow);
         setter(initial);
         if (!usePush) {
-          Alpine3.effect(() => replace2(getter()));
+          Alpine4.effect(() => replace2(getter()));
         } else {
-          Alpine3.effect(() => push2(getter()));
+          Alpine4.effect(() => push2(getter()));
           pop(async (newValue) => {
             setter(newValue);
             let tillTheEndOfTheMicrotaskQueue = () => Promise.resolve();
@@ -8220,19 +9655,19 @@ Read more about the Alpine's CSP-friendly build restrictions here: https://alpin
         };
       });
     });
-    Alpine3.history = { track: track2 };
+    Alpine4.history = { track: track2 };
   }
   function track2(name, initialSeedValue, alwaysShow = false, except = null) {
-    let { has: has2, get: get3, set: set3, remove } = queryStringUtils();
+    let { has: has2, get: get4, set: set4, remove } = queryStringUtils();
     let url = new URL(window.location.href);
     let isInitiallyPresentInUrl = has2(url, name);
-    let initialValue = isInitiallyPresentInUrl ? get3(url, name) : initialSeedValue;
+    let initialValue = isInitiallyPresentInUrl ? get4(url, name) : initialSeedValue;
     let initialValueMemo = JSON.stringify(initialValue);
     let exceptValueMemo = [false, null, void 0].includes(except) ? initialSeedValue : JSON.stringify(except);
     let hasReturnedToInitialValue = (newValue) => JSON.stringify(newValue) === initialValueMemo;
     let hasReturnedToExceptValue = (newValue) => JSON.stringify(newValue) === exceptValueMemo;
     if (alwaysShow)
-      url = set3(url, name, initialValue);
+      url = set4(url, name, initialValue);
     replace(url, name, { value: initialValue });
     let lock = false;
     let update = (strategy, newValue) => {
@@ -8246,7 +9681,7 @@ Read more about the Alpine's CSP-friendly build restrictions here: https://alpin
       } else if (!alwaysShow && hasReturnedToExceptValue(newValue)) {
         url2 = remove(url2, name);
       } else {
-        url2 = set3(url2, name, newValue);
+        url2 = set4(url2, name, newValue);
       }
       strategy(url2, name, { value: newValue });
     };
@@ -8304,26 +9739,26 @@ Read more about the Alpine's CSP-friendly build restrictions here: https://alpin
         let search = url.search;
         if (!search)
           return false;
-        let data2 = fromQueryString(search, key);
-        return Object.keys(data2).includes(key);
+        let data3 = fromQueryString(search, key);
+        return Object.keys(data3).includes(key);
       },
       get(url, key) {
         let search = url.search;
         if (!search)
           return false;
-        let data2 = fromQueryString(search, key);
-        return data2[key];
+        let data3 = fromQueryString(search, key);
+        return data3[key];
       },
       set(url, key, value) {
-        let data2 = fromQueryString(url.search, key);
-        data2[key] = stripNulls(unwrap(value));
-        url.search = toQueryString(data2);
+        let data3 = fromQueryString(url.search, key);
+        data3[key] = stripNulls(unwrap(value));
+        url.search = toQueryString(data3);
         return url;
       },
       remove(url, key) {
-        let data2 = fromQueryString(url.search, key);
-        delete data2[key];
-        url.search = toQueryString(data2);
+        let data3 = fromQueryString(url.search, key);
+        delete data3[key];
+        url.search = toQueryString(data3);
         return url;
       }
     };
@@ -8339,10 +9774,10 @@ Read more about the Alpine's CSP-friendly build restrictions here: https://alpin
     }
     return value;
   }
-  function toQueryString(data2) {
+  function toQueryString(data3) {
     let isObjecty2 = (subject) => typeof subject === "object" && subject !== null;
-    let buildQueryStringEntries = (data3, entries2 = {}, baseKey = "") => {
-      Object.entries(data3).forEach(([iKey, iValue]) => {
+    let buildQueryStringEntries = (data4, entries2 = {}, baseKey = "") => {
+      Object.entries(data4).forEach(([iKey, iValue]) => {
         let key = baseKey === "" ? iKey : `${baseKey}[${iKey}]`;
         if (iValue === null) {
           entries2[key] = "";
@@ -8354,24 +9789,24 @@ Read more about the Alpine's CSP-friendly build restrictions here: https://alpin
       });
       return entries2;
     };
-    let entries = buildQueryStringEntries(data2);
+    let entries = buildQueryStringEntries(data3);
     return Object.entries(entries).map(([key, value]) => `${key}=${value}`).join("&");
   }
   function fromQueryString(search, queryKey) {
     search = search.replace("?", "");
     if (search === "")
       return {};
-    let insertDotNotatedValueIntoData = (key, value, data3) => {
+    let insertDotNotatedValueIntoData = (key, value, data4) => {
       let [first2, second, ...rest] = key.split(".");
       if (!second)
-        return data3[key] = value;
-      if (data3[first2] === void 0) {
-        data3[first2] = isNaN(second) ? {} : [];
+        return data4[key] = value;
+      if (data4[first2] === void 0) {
+        data4[first2] = isNaN(second) ? {} : [];
       }
-      insertDotNotatedValueIntoData([second, ...rest].join("."), value, data3[first2]);
+      insertDotNotatedValueIntoData([second, ...rest].join("."), value, data4[first2]);
     };
     let entries = search.split("&").map((i) => i.split("="));
-    let data2 = /* @__PURE__ */ Object.create(null);
+    let data3 = /* @__PURE__ */ Object.create(null);
     entries.forEach(([key, value]) => {
       if (typeof value == "undefined")
         return;
@@ -8379,13 +9814,13 @@ Read more about the Alpine's CSP-friendly build restrictions here: https://alpin
       let decodedKey = decodeURIComponent(key);
       let shouldBeHandledAsArray = decodedKey.includes("[") && decodedKey.startsWith(queryKey);
       if (!shouldBeHandledAsArray) {
-        data2[key] = value;
+        data3[key] = value;
       } else {
         let dotNotatedKey = decodedKey.replaceAll("[", ".").replaceAll("]", "");
-        insertDotNotatedValueIntoData(dotNotatedKey, value, data2);
+        insertDotNotatedValueIntoData(dotNotatedKey, value, data3);
       }
     });
-    return data2;
+    return data3;
   }
 
   // node_modules/@alpinejs/morph/dist/module.esm.js
@@ -8492,9 +9927,9 @@ Read more about the Alpine's CSP-friendly build restrictions here: https://alpin
             fromKey = getKey(currentFrom);
           } else {
             if (!shouldSkip(adding, currentTo)) {
-              let clone2 = currentTo.cloneNode(true);
-              from2.appendChild(clone2);
-              added(clone2);
+              let clone3 = currentTo.cloneNode(true);
+              from2.appendChild(clone3);
+              added(clone3);
             }
             currentTo = getNextSibling(to, currentTo);
             continue;
@@ -8615,10 +10050,10 @@ Read more about the Alpine's CSP-friendly build restrictions here: https://alpin
     }
     function addNodeBefore(parent, node, beforeMe) {
       if (!shouldSkip(adding, node)) {
-        let clone2 = node.cloneNode(true);
-        parent.insertBefore(clone2, beforeMe);
-        added(clone2);
-        return clone2;
+        let clone3 = node.cloneNode(true);
+        parent.insertBefore(clone3, beforeMe);
+        added(clone3);
+        return clone3;
       }
       return node;
     }
@@ -8653,8 +10088,8 @@ Read more about the Alpine's CSP-friendly build restrictions here: https://alpin
     return el.nodeType === 3 || el.nodeType === 8;
   }
   var Block = class {
-    constructor(start3, end) {
-      this.startComment = start3;
+    constructor(start4, end) {
+      this.startComment = start4;
       this.endComment = end;
     }
     get children() {
@@ -8723,23 +10158,23 @@ Read more about the Alpine's CSP-friendly build restrictions here: https://alpin
     to.setAttribute("id", fromId);
     to.id = fromId;
   }
-  function src_default8(Alpine3) {
-    Alpine3.morph = morph;
+  function src_default8(Alpine4) {
+    Alpine4.morph = morph;
   }
   var module_default8 = src_default8;
 
   // node_modules/@alpinejs/mask/dist/module.esm.js
-  function src_default9(Alpine3) {
-    Alpine3.directive("mask", (el, { value, expression }, { effect: effect3, evaluateLater: evaluateLater2, cleanup: cleanup2 }) => {
+  function src_default9(Alpine4) {
+    Alpine4.directive("mask", (el, { value, expression }, { effect: effect4, evaluateLater: evaluateLater3, cleanup: cleanup2 }) => {
       let templateFn = () => expression;
       let lastInputValue = "";
       queueMicrotask(() => {
         if (["function", "dynamic"].includes(value)) {
-          let evaluator = evaluateLater2(expression);
-          effect3(() => {
+          let evaluator = evaluateLater3(expression);
+          effect4(() => {
             templateFn = (input) => {
               let result;
-              Alpine3.dontAutoEvaluateFunctions(() => {
+              Alpine4.dontAutoEvaluateFunctions(() => {
                 evaluator((value2) => {
                   result = typeof value2 === "function" ? value2(input) : value2;
                 }, { scope: {
@@ -8804,13 +10239,7 @@ Read more about the Alpine's CSP-friendly build restrictions here: https://alpin
     let unformattedValue = el.value;
     callback();
     let beforeLeftOfCursorBeforeFormatting = unformattedValue.slice(0, cursorPosition);
-    let newPosition = buildUp(
-      template,
-      stripDown(
-        template,
-        beforeLeftOfCursorBeforeFormatting
-      )
-    ).length;
+    let newPosition = buildUp(template, stripDown(template, beforeLeftOfCursorBeforeFormatting)).length;
     el.setSelectionRange(newPosition, newPosition);
   }
   function stripDown(template, input) {
@@ -8905,22 +10334,22 @@ Read more about the Alpine's CSP-friendly build restrictions here: https://alpin
   var module_default9 = src_default9;
 
   // js/lifecycle.js
-  function start2() {
+  function start3() {
     setTimeout(() => ensureLivewireScriptIsntMisplaced());
     dispatch(document, "livewire:init");
     dispatch(document, "livewire:initializing");
-    module_default.plugin(module_default8);
-    module_default.plugin(history2);
-    module_default.plugin(module_default5);
-    module_default.plugin(module_default6);
-    module_default.plugin(module_default2);
-    module_default.plugin(module_default7);
-    module_default.plugin(module_default3);
-    module_default.plugin(module_default4);
-    module_default.plugin(navigate_default);
-    module_default.plugin(module_default9);
-    module_default.addRootSelector(() => "[wire\\:id]");
-    module_default.onAttributesAdded((el, attributes) => {
+    alpine_default3.plugin(module_default8);
+    alpine_default3.plugin(history2);
+    alpine_default3.plugin(module_default5);
+    alpine_default3.plugin(module_default6);
+    alpine_default3.plugin(module_default2);
+    alpine_default3.plugin(module_default7);
+    alpine_default3.plugin(module_default3);
+    alpine_default3.plugin(module_default4);
+    alpine_default3.plugin(navigate_default);
+    alpine_default3.plugin(module_default9);
+    alpine_default3.addRootSelector(() => "[wire\\:id]");
+    alpine_default3.onAttributesAdded((el, attributes) => {
       if (!Array.from(attributes).some((attribute) => matchesForLivewireDirective(attribute.name)))
         return;
       let component = closestComponent(el, false);
@@ -8929,40 +10358,38 @@ Read more about the Alpine's CSP-friendly build restrictions here: https://alpin
       attributes.forEach((attribute) => {
         if (!matchesForLivewireDirective(attribute.name))
           return;
-        let directive3 = extractDirective(el, attribute.name);
-        trigger2("directive.init", { el, component, directive: directive3, cleanup: (callback) => {
-          module_default.onAttributeRemoved(el, directive3.raw, callback);
+        let directive4 = extractDirective(el, attribute.name);
+        trigger2("directive.init", { el, component, directive: directive4, cleanup: (callback) => {
+          alpine_default3.onAttributeRemoved(el, directive4.raw, callback);
         } });
       });
     });
-    module_default.interceptInit(
-      module_default.skipDuringClone((el) => {
-        if (!Array.from(el.attributes).some((attribute) => matchesForLivewireDirective(attribute.name)))
-          return;
-        if (el.hasAttribute("wire:id")) {
-          let component2 = initComponent(el);
-          module_default.onAttributeRemoved(el, "wire:id", () => {
-            destroyComponent(component2.id);
-          });
-        }
-        let directives2 = Array.from(el.getAttributeNames()).filter((name) => matchesForLivewireDirective(name)).map((name) => extractDirective(el, name));
-        directives2.forEach((directive3) => {
-          trigger2("directive.global.init", { el, directive: directive3, cleanup: (callback) => {
-            module_default.onAttributeRemoved(el, directive3.raw, callback);
+    alpine_default3.interceptInit(alpine_default3.skipDuringClone((el) => {
+      if (!Array.from(el.attributes).some((attribute) => matchesForLivewireDirective(attribute.name)))
+        return;
+      if (el.hasAttribute("wire:id")) {
+        let component2 = initComponent(el);
+        alpine_default3.onAttributeRemoved(el, "wire:id", () => {
+          destroyComponent(component2.id);
+        });
+      }
+      let directives3 = Array.from(el.getAttributeNames()).filter((name) => matchesForLivewireDirective(name)).map((name) => extractDirective(el, name));
+      directives3.forEach((directive4) => {
+        trigger2("directive.global.init", { el, directive: directive4, cleanup: (callback) => {
+          alpine_default3.onAttributeRemoved(el, directive4.raw, callback);
+        } });
+      });
+      let component = closestComponent(el, false);
+      if (component) {
+        trigger2("element.init", { el, component });
+        directives3.forEach((directive4) => {
+          trigger2("directive.init", { el, component, directive: directive4, cleanup: (callback) => {
+            alpine_default3.onAttributeRemoved(el, directive4.raw, callback);
           } });
         });
-        let component = closestComponent(el, false);
-        if (component) {
-          trigger2("element.init", { el, component });
-          directives2.forEach((directive3) => {
-            trigger2("directive.init", { el, component, directive: directive3, cleanup: (callback) => {
-              module_default.onAttributeRemoved(el, directive3.raw, callback);
-            } });
-          });
-        }
-      })
-    );
-    module_default.start();
+      }
+    }));
+    alpine_default3.start();
     setTimeout(() => window.Livewire.initialRenderIsFinished = true);
     dispatch(document, "livewire:initialized");
   }
@@ -9029,8 +10456,8 @@ Read more about the Alpine's CSP-friendly build restrictions here: https://alpin
       Object.entries(scripts).forEach(([key, content]) => {
         onlyIfScriptHasntBeenRunAlreadyForThisComponent(component, key, () => {
           let scriptContent = extractScriptTagContent(content);
-          module_default.dontAutoEvaluateFunctions(() => {
-            module_default.evaluate(component.el, scriptContent, { "$wire": component.$wire });
+          alpine_default3.dontAutoEvaluateFunctions(() => {
+            alpine_default3.evaluate(component.el, scriptContent, { "$wire": component.$wire });
           });
         });
       });
@@ -9108,13 +10535,13 @@ Read more about the Alpine's CSP-friendly build restrictions here: https://alpin
     if (js) {
       Object.entries(js).forEach(([method, body]) => {
         overrideMethod(component, method, () => {
-          module_default.evaluate(component.el, body);
+          alpine_default3.evaluate(component.el, body);
         });
       });
     }
     if (xjs) {
       xjs.forEach((expression) => {
-        module_default.evaluate(component.el, expression);
+        alpine_default3.evaluate(component.el, expression);
       });
     }
   });
@@ -9133,7 +10560,7 @@ Read more about the Alpine's CSP-friendly build restrictions here: https://alpin
     let to = wrapper.firstElementChild;
     to.__livewire = component;
     trigger2("morph", { el, toEl: to, component });
-    module_default.morph(el, to, {
+    alpine_default3.morph(el, to, {
       updating: (el2, toEl, childrenOnly, skip) => {
         if (isntElement(el2))
           return;
@@ -9216,17 +10643,17 @@ Read more about the Alpine's CSP-friendly build restrictions here: https://alpin
       else if (to)
         dispatchTo(to, name, params);
       else
-        dispatch3(component, name, params);
+        dispatch4(component, name, params);
     });
   }
 
   // js/features/supportDisablingFormsDuringRequest.js
   var cleanups = new Bag();
-  on2("directive.init", ({ el, directive: directive3, cleanup: cleanup2, component }) => setTimeout(() => {
-    if (directive3.value !== "submit")
+  on2("directive.init", ({ el, directive: directive4, cleanup: cleanup2, component }) => setTimeout(() => {
+    if (directive4.value !== "submit")
       return;
     el.addEventListener("submit", () => {
-      let componentId = directive3.expression.startsWith("$parent") ? component.parent.id : component.id;
+      let componentId = directive4.expression.startsWith("$parent") ? component.parent.id : component.id;
       let cleanup3 = disableForm(el);
       cleanups.add(componentId, cleanup3);
     });
@@ -9239,7 +10666,7 @@ Read more about the Alpine's CSP-friendly build restrictions here: https://alpin
   });
   function disableForm(formEl) {
     let undos = [];
-    module_default.walk(formEl, (el, skip) => {
+    alpine_default3.walk(formEl, (el, skip) => {
       if (!formEl.contains(el))
         return;
       if (el.hasAttribute("wire:ignore"))
@@ -9356,9 +10783,7 @@ Read more about the Alpine's CSP-friendly build restrictions here: https://alpin
       if (!download)
         return;
       let urlObject = window.webkitURL || window.URL;
-      let url = urlObject.createObjectURL(
-        base64toBlob(download.content, download.contentType)
-      );
+      let url = urlObject.createObjectURL(base64toBlob(download.content, download.contentType));
       let invisibleLink = document.createElement("a");
       invisibleLink.style.display = "none";
       invisibleLink.href = url;
@@ -9425,10 +10850,10 @@ Read more about the Alpine's CSP-friendly build restrictions here: https://alpin
       let initialValue = [false, null, void 0].includes(except) ? dataGet(component.ephemeral, name) : except;
       let { replace: replace2, push: push2, pop } = track2(as, initialValue, alwaysShow, except);
       if (use === "replace") {
-        let effectReference = module_default.effect(() => {
+        let effectReference = alpine_default3.effect(() => {
           replace2(dataGet(component.reactive, name));
         });
-        cleanup2(() => module_default.release(effectReference));
+        cleanup2(() => alpine_default3.release(effectReference));
       } else if (use === "push") {
         let forgetCommitHandler = on2("commit", ({ component: commitComponent, succeed }) => {
           if (component !== commitComponent)
@@ -9581,10 +11006,10 @@ Read more about the Alpine's CSP-friendly build restrictions here: https://alpin
   on2("morph.added", ({ el }) => {
     el.__addedByMorph = true;
   });
-  directive2("transition", ({ el, directive: directive3, component, cleanup: cleanup2 }) => {
-    let visibility = module_default.reactive({ state: el.__addedByMorph ? false : true });
-    module_default.bind(el, {
-      [directive3.rawName.replace("wire:", "x-")]: "",
+  directive3("transition", ({ el, directive: directive4, component, cleanup: cleanup2 }) => {
+    let visibility = alpine_default3.reactive({ state: el.__addedByMorph ? false : true });
+    alpine_default3.bind(el, {
+      [directive4.rawName.replace("wire:", "x-")]: "",
       "x-show"() {
         return visibility.state;
       }
@@ -9619,20 +11044,20 @@ Read more about the Alpine's CSP-friendly build restrictions here: https://alpin
   }
 
   // js/directives/wire-wildcard.js
-  on2("directive.init", ({ el, directive: directive3, cleanup: cleanup2, component }) => {
-    if (["snapshot", "effects", "model", "init", "loading", "poll", "ignore", "id", "data", "key", "target", "dirty"].includes(directive3.value))
+  on2("directive.init", ({ el, directive: directive4, cleanup: cleanup2, component }) => {
+    if (["snapshot", "effects", "model", "init", "loading", "poll", "ignore", "id", "data", "key", "target", "dirty"].includes(directive4.value))
       return;
-    if (customDirectiveHasBeenRegistered(directive3.value))
+    if (customDirectiveHasBeenRegistered(directive4.value))
       return;
-    let attribute = directive3.rawName.replace("wire:", "x-on:");
-    if (directive3.value === "submit" && !directive3.modifiers.includes("prevent")) {
+    let attribute = directive4.rawName.replace("wire:", "x-on:");
+    if (directive4.value === "submit" && !directive4.modifiers.includes("prevent")) {
       attribute = attribute + ".prevent";
     }
-    let cleanupBinding = module_default.bind(el, {
+    let cleanupBinding = alpine_default3.bind(el, {
       [attribute](e) {
         let execute = () => {
           callAndClearComponentDebounces(component, () => {
-            module_default.evaluate(el, "$wire." + directive3.expression, { scope: { $event: e } });
+            alpine_default3.evaluate(el, "$wire." + directive4.expression, { scope: { $event: e } });
           });
         };
         if (el.__livewire_confirm) {
@@ -9650,17 +11075,15 @@ Read more about the Alpine's CSP-friendly build restrictions here: https://alpin
   });
 
   // js/directives/wire-navigate.js
-  module_default.addInitSelector(() => `[wire\\:navigate]`);
-  module_default.addInitSelector(() => `[wire\\:navigate\\.hover]`);
-  module_default.interceptInit(
-    module_default.skipDuringClone((el) => {
-      if (el.hasAttribute("wire:navigate")) {
-        module_default.bind(el, { ["x-navigate"]: true });
-      } else if (el.hasAttribute("wire:navigate.hover")) {
-        module_default.bind(el, { ["x-navigate.hover"]: true });
-      }
-    })
-  );
+  alpine_default3.addInitSelector(() => `[wire\\:navigate]`);
+  alpine_default3.addInitSelector(() => `[wire\\:navigate\\.hover]`);
+  alpine_default3.interceptInit(alpine_default3.skipDuringClone((el) => {
+    if (el.hasAttribute("wire:navigate")) {
+      alpine_default3.bind(el, { ["x-navigate"]: true });
+    } else if (el.hasAttribute("wire:navigate.hover")) {
+      alpine_default3.bind(el, { ["x-navigate.hover"]: true });
+    }
+  }));
   document.addEventListener("alpine:navigating", () => {
     Livewire.all().forEach((component) => {
       component.inscribeSnapshotAndEffectsOnElement();
@@ -9668,9 +11091,9 @@ Read more about the Alpine's CSP-friendly build restrictions here: https://alpin
   });
 
   // js/directives/wire-confirm.js
-  directive2("confirm", ({ el, directive: directive3 }) => {
-    let message = directive3.expression;
-    let shouldPrompt = directive3.modifiers.includes("prompt");
+  directive3("confirm", ({ el, directive: directive4 }) => {
+    let message = directive4.expression;
+    let shouldPrompt = directive4.modifiers.includes("prompt");
     message = message.replaceAll("\\n", "\n");
     if (message === "")
       message = "Are you sure?";
@@ -9697,16 +11120,16 @@ Read more about the Alpine's CSP-friendly build restrictions here: https://alpin
   });
 
   // js/directives/wire-current.js
-  module_default.addInitSelector(() => `[wire\\:current]`);
+  alpine_default3.addInitSelector(() => `[wire\\:current]`);
   var onPageChanges = /* @__PURE__ */ new Map();
   document.addEventListener("livewire:navigated", () => {
     onPageChanges.forEach((i) => i(new URL(window.location.href)));
   });
-  globalDirective("current", ({ el, directive: directive3, cleanup: cleanup2 }) => {
-    let expression = directive3.expression;
+  globalDirective("current", ({ el, directive: directive4, cleanup: cleanup2 }) => {
+    let expression = directive4.expression;
     let options = {
-      exact: directive3.modifiers.includes("exact"),
-      strict: directive3.modifiers.includes("strict")
+      exact: directive4.modifiers.includes("exact"),
+      strict: directive4.modifiers.includes("strict")
     };
     if (expression.startsWith("#"))
       return;
@@ -9746,25 +11169,25 @@ Read more about the Alpine's CSP-friendly build restrictions here: https://alpin
   }
 
   // js/directives/shared.js
-  function toggleBooleanStateDirective(el, directive3, isTruthy, cachedDisplay = null) {
-    isTruthy = directive3.modifiers.includes("remove") ? !isTruthy : isTruthy;
-    if (directive3.modifiers.includes("class")) {
-      let classes = directive3.expression.split(" ").filter(String);
+  function toggleBooleanStateDirective(el, directive4, isTruthy, cachedDisplay = null) {
+    isTruthy = directive4.modifiers.includes("remove") ? !isTruthy : isTruthy;
+    if (directive4.modifiers.includes("class")) {
+      let classes = directive4.expression.split(" ").filter(String);
       if (isTruthy) {
         el.classList.add(...classes);
       } else {
         el.classList.remove(...classes);
       }
-    } else if (directive3.modifiers.includes("attr")) {
+    } else if (directive4.modifiers.includes("attr")) {
       if (isTruthy) {
-        el.setAttribute(directive3.expression, true);
+        el.setAttribute(directive4.expression, true);
       } else {
-        el.removeAttribute(directive3.expression);
+        el.removeAttribute(directive4.expression);
       }
     } else {
       let cache = cachedDisplay ?? window.getComputedStyle(el, null).getPropertyValue("display");
-      let display = ["inline", "block", "table", "flex", "grid", "inline-flex"].filter((i) => directive3.modifiers.includes(i))[0] || "inline-block";
-      display = directive3.modifiers.includes("remove") && !isTruthy ? cache : display;
+      let display = ["inline", "block", "table", "flex", "grid", "inline-flex"].filter((i) => directive4.modifiers.includes(i))[0] || "inline-block";
+      display = directive4.modifiers.includes("remove") && !isTruthy ? cache : display;
       el.style.display = isTruthy ? display : "none";
     }
   }
@@ -9774,9 +11197,9 @@ Read more about the Alpine's CSP-friendly build restrictions here: https://alpin
   var onlineHandlers = /* @__PURE__ */ new Set();
   window.addEventListener("offline", () => offlineHandlers.forEach((i) => i()));
   window.addEventListener("online", () => onlineHandlers.forEach((i) => i()));
-  directive2("offline", ({ el, directive: directive3, cleanup: cleanup2 }) => {
-    let setOffline = () => toggleBooleanStateDirective(el, directive3, true);
-    let setOnline = () => toggleBooleanStateDirective(el, directive3, false);
+  directive3("offline", ({ el, directive: directive4, cleanup: cleanup2 }) => {
+    let setOffline = () => toggleBooleanStateDirective(el, directive4, true);
+    let setOnline = () => toggleBooleanStateDirective(el, directive4, false);
     offlineHandlers.add(setOffline);
     onlineHandlers.add(setOnline);
     cleanup2(() => {
@@ -9786,24 +11209,24 @@ Read more about the Alpine's CSP-friendly build restrictions here: https://alpin
   });
 
   // js/directives/wire-loading.js
-  directive2("loading", ({ el, directive: directive3, component, cleanup: cleanup2 }) => {
+  directive3("loading", ({ el, directive: directive4, component, cleanup: cleanup2 }) => {
     let { targets, inverted } = getTargets(el);
-    let [delay3, abortDelay] = applyDelay(directive3);
+    let [delay3, abortDelay] = applyDelay(directive4);
     let cleanupA = whenTargetsArePartOfRequest(component, targets, inverted, [
-      () => delay3(() => toggleBooleanStateDirective(el, directive3, true)),
-      () => abortDelay(() => toggleBooleanStateDirective(el, directive3, false))
+      () => delay3(() => toggleBooleanStateDirective(el, directive4, true)),
+      () => abortDelay(() => toggleBooleanStateDirective(el, directive4, false))
     ]);
     let cleanupB = whenTargetsArePartOfFileUpload(component, targets, [
-      () => delay3(() => toggleBooleanStateDirective(el, directive3, true)),
-      () => abortDelay(() => toggleBooleanStateDirective(el, directive3, false))
+      () => delay3(() => toggleBooleanStateDirective(el, directive4, true)),
+      () => abortDelay(() => toggleBooleanStateDirective(el, directive4, false))
     ]);
     cleanup2(() => {
       cleanupA();
       cleanupB();
     });
   });
-  function applyDelay(directive3) {
-    if (!directive3.modifiers.includes("delay") || directive3.modifiers.includes("none"))
+  function applyDelay(directive4) {
+    if (!directive4.modifiers.includes("delay") || directive4.modifiers.includes("none"))
       return [(i) => i(), (i) => i()];
     let duration = 200;
     let delayModifiers = {
@@ -9816,24 +11239,24 @@ Read more about the Alpine's CSP-friendly build restrictions here: https://alpin
       "longest": 1e3
     };
     Object.keys(delayModifiers).some((key) => {
-      if (directive3.modifiers.includes(key)) {
+      if (directive4.modifiers.includes(key)) {
         duration = delayModifiers[key];
         return true;
       }
     });
     let timeout;
-    let started2 = false;
+    let started3 = false;
     return [
       (callback) => {
         timeout = setTimeout(() => {
           callback();
-          started2 = true;
+          started3 = true;
         }, duration);
       },
       async (callback) => {
-        if (started2) {
+        if (started3) {
           await callback();
-          started2 = false;
+          started3 = false;
         } else {
           clearTimeout(timeout);
         }
@@ -9905,26 +11328,26 @@ Read more about the Alpine's CSP-friendly build restrictions here: https://alpin
     });
   }
   function getTargets(el) {
-    let directives2 = getDirectives(el);
+    let directives3 = getDirectives(el);
     let targets = [];
     let inverted = false;
-    if (directives2.has("target")) {
-      let directive3 = directives2.get("target");
-      let raw2 = directive3.expression;
-      if (directive3.modifiers.includes("except"))
+    if (directives3.has("target")) {
+      let directive4 = directives3.get("target");
+      let raw3 = directive4.expression;
+      if (directive4.modifiers.includes("except"))
         inverted = true;
-      if (raw2.includes("(") && raw2.includes(")")) {
-        targets.push({ target: directive3.method, params: quickHash(JSON.stringify(directive3.params)) });
-      } else if (raw2.includes(",")) {
-        raw2.split(",").map((i) => i.trim()).forEach((target) => {
+      if (raw3.includes("(") && raw3.includes(")")) {
+        targets.push({ target: directive4.method, params: quickHash(JSON.stringify(directive4.params)) });
+      } else if (raw3.includes(",")) {
+        raw3.split(",").map((i) => i.trim()).forEach((target) => {
           targets.push({ target });
         });
       } else {
-        targets.push({ target: raw2 });
+        targets.push({ target: raw3 });
       }
     } else {
       let nonActionOrModelLivewireDirectives = ["init", "dirty", "offline", "target", "loading", "poll", "ignore", "key", "id"];
-      directives2.all().filter((i) => !nonActionOrModelLivewireDirectives.includes(i.value)).map((i) => i.expression.split("(")[0]).forEach((target) => targets.push({ target }));
+      directives3.all().filter((i) => !nonActionOrModelLivewireDirectives.includes(i.value)).map((i) => i.expression.split("(")[0]).forEach((target) => targets.push({ target }));
     }
     return { targets, inverted };
   }
@@ -9933,8 +11356,8 @@ Read more about the Alpine's CSP-friendly build restrictions here: https://alpin
   }
 
   // js/directives/wire-stream.js
-  directive2("stream", ({ el, directive: directive3, cleanup: cleanup2 }) => {
-    let { expression, modifiers } = directive3;
+  directive3("stream", ({ el, directive: directive4, cleanup: cleanup2 }) => {
+    let { expression, modifiers } = directive4;
     let off = on2("stream", ({ name, content, replace: replace2 }) => {
       if (name !== expression)
         return;
@@ -9983,22 +11406,22 @@ Read more about the Alpine's CSP-friendly build restrictions here: https://alpin
         return remainingResponse;
     }
   }
-  function extractStreamObjects(raw2) {
+  function extractStreamObjects(raw3) {
     let regex = /({"stream":true.*?"endStream":true})/g;
-    let matches2 = raw2.match(regex);
+    let matches2 = raw3.match(regex);
     let parsed = [];
     if (matches2) {
       for (let i = 0; i < matches2.length; i++) {
         parsed.push(JSON.parse(matches2[i]).body);
       }
     }
-    let remaining = raw2.replace(regex, "");
+    let remaining = raw3.replace(regex, "");
     return [parsed, remaining];
   }
 
   // js/directives/wire-replace.js
-  directive2("replace", ({ el, directive: directive3 }) => {
-    if (directive3.modifiers.includes("self")) {
+  directive3("replace", ({ el, directive: directive4 }) => {
+    if (directive4.modifiers.includes("self")) {
       el.__livewire_replace_self = true;
     } else {
       el.__livewire_replace = true;
@@ -10006,8 +11429,8 @@ Read more about the Alpine's CSP-friendly build restrictions here: https://alpin
   });
 
   // js/directives/wire-ignore.js
-  directive2("ignore", ({ el, directive: directive3 }) => {
-    if (directive3.modifiers.includes("self")) {
+  directive3("ignore", ({ el, directive: directive4 }) => {
+    if (directive4.modifiers.includes("self")) {
       el.__livewire_ignore_self = true;
     } else {
       el.__livewire_ignore = true;
@@ -10023,13 +11446,13 @@ Read more about the Alpine's CSP-friendly build restrictions here: https://alpin
       });
     });
   });
-  directive2("dirty", ({ el, directive: directive3, component }) => {
+  directive3("dirty", ({ el, directive: directive4, component }) => {
     let targets = dirtyTargets(el);
     let dirty = Alpine.reactive({ state: false });
     let oldIsDirty = false;
     let initialDisplay = el.style.display;
     let refreshDirtyState = (isDirty) => {
-      toggleBooleanStateDirective(el, directive3, isDirty, initialDisplay);
+      toggleBooleanStateDirective(el, directive4, isDirty, initialDisplay);
       oldIsDirty = isDirty;
     };
     refreshDirtyStatesByComponent.add(component, refreshDirtyState);
@@ -10052,22 +11475,20 @@ Read more about the Alpine's CSP-friendly build restrictions here: https://alpin
     });
   });
   function dirtyTargets(el) {
-    let directives2 = getDirectives(el);
+    let directives3 = getDirectives(el);
     let targets = [];
-    if (directives2.has("model")) {
-      targets.push(directives2.get("model").expression);
+    if (directives3.has("model")) {
+      targets.push(directives3.get("model").expression);
     }
-    if (directives2.has("target")) {
-      targets = targets.concat(
-        directives2.get("target").expression.split(",").map((s) => s.trim())
-      );
+    if (directives3.has("target")) {
+      targets = targets.concat(directives3.get("target").expression.split(",").map((s) => s.trim()));
     }
     return targets;
   }
 
   // js/directives/wire-model.js
-  directive2("model", ({ el, directive: directive3, component, cleanup: cleanup2 }) => {
-    let { expression, modifiers } = directive3;
+  directive3("model", ({ el, directive: directive4, component, cleanup: cleanup2 }) => {
+    let { expression, modifiers } = directive4;
     if (!expression) {
       return console.warn("Livewire: [wire:model] is missing a value.", el);
     }
@@ -10082,8 +11503,8 @@ Read more about the Alpine's CSP-friendly build restrictions here: https://alpin
     let onBlur = modifiers.includes("blur");
     let isDebounced = modifiers.includes("debounce");
     let update = expression.startsWith("$parent") ? () => component.$wire.$parent.$commit() : () => component.$wire.$commit();
-    let debouncedUpdate = isTextInput(el) && !isDebounced && isLive ? debounce2(update, 150) : update;
-    module_default.bind(el, {
+    let debouncedUpdate = isTextInput(el) && !isDebounced && isLive ? debounce3(update, 150) : update;
+    alpine_default3.bind(el, {
       ["@change"]() {
         isLazy && update();
       },
@@ -10125,7 +11546,7 @@ Read more about the Alpine's CSP-friendly build restrictions here: https://alpin
     let baseProperty = property.split(".")[0];
     return !Object.keys(component.canonical).includes(baseProperty);
   }
-  function debounce2(func, wait) {
+  function debounce3(func, wait) {
     var timeout;
     return function() {
       var context = this, args = arguments;
@@ -10139,29 +11560,26 @@ Read more about the Alpine's CSP-friendly build restrictions here: https://alpin
   }
 
   // js/directives/wire-init.js
-  directive2("init", ({ el, directive: directive3 }) => {
-    let fullMethod = directive3.expression ?? "$refresh";
-    module_default.evaluate(el, `$wire.${fullMethod}`);
+  directive3("init", ({ el, directive: directive4 }) => {
+    let fullMethod = directive4.expression ?? "$refresh";
+    alpine_default3.evaluate(el, `$wire.${fullMethod}`);
   });
 
   // js/directives/wire-poll.js
-  directive2("poll", ({ el, directive: directive3 }) => {
-    let interval = extractDurationFrom(directive3.modifiers, 2e3);
-    let { start: start3, pauseWhile, throttleWhile, stopWhen } = poll(() => {
-      triggerComponentRequest(el, directive3);
+  directive3("poll", ({ el, directive: directive4 }) => {
+    let interval = extractDurationFrom(directive4.modifiers, 2e3);
+    let { start: start4, pauseWhile, throttleWhile, stopWhen } = poll(() => {
+      triggerComponentRequest(el, directive4);
     }, interval);
-    start3();
-    throttleWhile(() => theTabIsInTheBackground() && theDirectiveIsMissingKeepAlive(directive3));
-    pauseWhile(() => theDirectiveHasVisible(directive3) && theElementIsNotInTheViewport(el));
+    start4();
+    throttleWhile(() => theTabIsInTheBackground() && theDirectiveIsMissingKeepAlive(directive4));
+    pauseWhile(() => theDirectiveHasVisible(directive4) && theElementIsNotInTheViewport(el));
     pauseWhile(() => theDirectiveIsOffTheElement(el));
     pauseWhile(() => livewireIsOffline());
     stopWhen(() => theElementIsDisconnected(el));
   });
-  function triggerComponentRequest(el, directive3) {
-    module_default.evaluate(
-      el,
-      directive3.expression ? "$wire." + directive3.expression : "$wire.$commit()"
-    );
+  function triggerComponentRequest(el, directive4) {
+    alpine_default3.evaluate(el, directive4.expression ? "$wire." + directive4.expression : "$wire.$commit()");
   }
   function poll(callback, interval = 2e3) {
     let pauseConditions = [];
@@ -10224,11 +11642,11 @@ Read more about the Alpine's CSP-friendly build restrictions here: https://alpin
   function theDirectiveIsOffTheElement(el) {
     return !getDirectives(el).has("poll");
   }
-  function theDirectiveIsMissingKeepAlive(directive3) {
-    return !directive3.modifiers.includes("keep-alive");
+  function theDirectiveIsMissingKeepAlive(directive4) {
+    return !directive4.modifiers.includes("keep-alive");
   }
-  function theDirectiveHasVisible(directive3) {
-    return directive3.modifiers.includes("visible");
+  function theDirectiveHasVisible(directive4) {
+    return directive4.modifiers.includes("visible");
   }
   function theElementIsNotInTheViewport(el) {
     let bounding = el.getBoundingClientRect();
@@ -10251,9 +11669,9 @@ Read more about the Alpine's CSP-friendly build restrictions here: https://alpin
 
   // js/index.js
   var Livewire2 = {
-    directive: directive2,
+    directive: directive3,
     dispatchTo,
-    start: start2,
+    start: start3,
     first,
     find,
     getByName,
@@ -10264,7 +11682,7 @@ Read more about the Alpine's CSP-friendly build restrictions here: https://alpin
     dispatch: dispatchGlobal,
     on: on3,
     get navigate() {
-      return module_default.navigate;
+      return alpine_default3.navigate;
     }
   };
   var warnAboutMultipleInstancesOf = (entity) => console.warn(`Detected multiple instances of ${entity} running`);
@@ -10273,7 +11691,7 @@ Read more about the Alpine's CSP-friendly build restrictions here: https://alpin
   if (window.Alpine)
     warnAboutMultipleInstancesOf("Alpine");
   window.Livewire = Livewire2;
-  window.Alpine = module_default;
+  window.Alpine = alpine_default3;
   if (window.livewireScriptConfig === void 0) {
     window.Alpine.__fromLivewire = true;
     document.addEventListener("DOMContentLoaded", () => {
@@ -10283,6 +11701,9 @@ Read more about the Alpine's CSP-friendly build restrictions here: https://alpin
       Livewire2.start();
     });
   }
+
+  // js/csp/index.js
+  setCspEvaluator();
 })();
 /* NProgress, (c) 2013, 2014 Rico Sta. Cruz - http://ricostacruz.com/nprogress
  * @license MIT */
