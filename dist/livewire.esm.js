@@ -17,9 +17,9 @@ var __copyProps = (to, from, except, desc) => {
 };
 var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(isNodeMode || !mod || !mod.__esModule ? __defProp(target, "default", { value: mod, enumerable: true }) : target, mod));
 
-// node_modules/alpinejs/dist/module.cjs.js
+// ../alpine/packages/alpinejs/dist/module.cjs.js
 var require_module_cjs = __commonJS({
-  "node_modules/alpinejs/dist/module.cjs.js"(exports, module) {
+  "../alpine/packages/alpinejs/dist/module.cjs.js"(exports, module) {
     var __create2 = Object.create;
     var __defProp2 = Object.defineProperty;
     var __getOwnPropDesc2 = Object.getOwnPropertyDescriptor;
@@ -1675,7 +1675,7 @@ var require_module_cjs = __commonJS({
       magics2[name] = callback;
     }
     function injectMagics2(obj, el) {
-      let memoizedUtilities = getUtilities2(el);
+      let memoizedUtilities = getUtilities(el);
       Object.entries(magics2).forEach(([name, callback]) => {
         Object.defineProperty(obj, `$${name}`, {
           get() {
@@ -1686,7 +1686,7 @@ var require_module_cjs = __commonJS({
       });
       return obj;
     }
-    function getUtilities2(el) {
+    function getUtilities(el) {
       let [utilities, cleanup] = getElementBoundUtilities2(el);
       let utils = { interceptor: interceptor2, ...utilities };
       onElRemoved2(el, cleanup);
@@ -1724,15 +1724,16 @@ ${expression ? 'Expression: "' + expression + '"\n\n' : ""}`, el);
     function evaluateLater2(...args) {
       return theEvaluatorFunction2(...args);
     }
-    var theEvaluatorFunction2 = normalEvaluator2;
+    var theEvaluatorFunction2 = () => {
+    };
     function setEvaluator2(newEvaluator) {
       theEvaluatorFunction2 = newEvaluator;
     }
-    function normalEvaluator2(el, expression) {
+    function normalEvaluator(el, expression) {
       let overriddenMagics = {};
       injectMagics2(overriddenMagics, el);
       let dataStack = [overriddenMagics, ...closestDataStack2(el)];
-      let evaluator = typeof expression === "function" ? generateEvaluatorFromFunction2(dataStack, expression) : generateEvaluatorFromString2(dataStack, expression, el);
+      let evaluator = typeof expression === "function" ? generateEvaluatorFromFunction2(dataStack, expression) : generateEvaluatorFromString(dataStack, expression, el);
       return tryCatch2.bind(null, el, expression, evaluator);
     }
     function generateEvaluatorFromFunction2(dataStack, func) {
@@ -1742,10 +1743,10 @@ ${expression ? 'Expression: "' + expression + '"\n\n' : ""}`, el);
         runIfTypeOfFunction2(receiver, result);
       };
     }
-    var evaluatorMemo2 = {};
-    function generateFunctionFromString2(expression, el) {
-      if (evaluatorMemo2[expression]) {
-        return evaluatorMemo2[expression];
+    var evaluatorMemo = {};
+    function generateFunctionFromString(expression, el) {
+      if (evaluatorMemo[expression]) {
+        return evaluatorMemo[expression];
       }
       let AsyncFunction = Object.getPrototypeOf(async function() {
       }).constructor;
@@ -1763,11 +1764,11 @@ ${expression ? 'Expression: "' + expression + '"\n\n' : ""}`, el);
         }
       };
       let func = safeAsyncFunction();
-      evaluatorMemo2[expression] = func;
+      evaluatorMemo[expression] = func;
       return func;
     }
-    function generateEvaluatorFromString2(dataStack, expression, el) {
-      let func = generateFunctionFromString2(expression, el);
+    function generateEvaluatorFromString(dataStack, expression, el) {
+      let func = generateFunctionFromString(expression, el);
       return (receiver = () => {
       }, { scope: scope22 = {}, params = [] } = {}) => {
         func.result = void 0;
@@ -3824,7 +3825,7 @@ ${expression ? 'Expression: "' + expression + '"\n\n' : ""}`, el);
     function warnMissingPluginDirective(name, directiveName, slug) {
       directive3(directiveName, (el) => warn2(`You can't use [x-${directiveName}] without first installing the "${name}" plugin here: https://alpinejs.dev/plugins/${slug}`, el));
     }
-    alpine_default3.setEvaluator(normalEvaluator2);
+    alpine_default3.setEvaluator(normalEvaluator);
     alpine_default3.setReactivityEngine({ reactive: import_reactivity10.reactive, effect: import_reactivity10.effect, release: import_reactivity10.stop, raw: import_reactivity10.toRaw });
     var src_default = alpine_default3;
     var module_default = src_default;
@@ -7721,7 +7722,7 @@ function cancelUpload(component, name, cancelledCallback = () => {
 // js/alpine.js
 var import_alpinejs = __toESM(require_module_cjs());
 
-// node_modules/alpinejs/src/scope.js
+// ../alpine/packages/alpinejs/src/scope.js
 function scope(node) {
   return mergeProxies(closestDataStack(node));
 }
@@ -7775,7 +7776,7 @@ function collapseProxies() {
   }, {});
 }
 
-// node_modules/alpinejs/src/scheduler.js
+// ../alpine/packages/alpinejs/src/scheduler.js
 var flushPending = false;
 var flushing = false;
 var queue = [];
@@ -7811,7 +7812,7 @@ function flushJobs() {
   flushing = false;
 }
 
-// node_modules/alpinejs/src/mutation.js
+// ../alpine/packages/alpinejs/src/mutation.js
 var onAttributeAddeds = [];
 var onElRemoveds = [];
 var onElAddeds = [];
@@ -7972,7 +7973,7 @@ function onMutate(mutations) {
   removedAttributes = null;
 }
 
-// node_modules/alpinejs/src/reactivity.js
+// ../alpine/packages/alpinejs/src/reactivity.js
 var reactive;
 var effect;
 var release;
@@ -8041,7 +8042,7 @@ function watch(getter, callback) {
   return () => release(effectReference);
 }
 
-// node_modules/alpinejs/src/utils/dispatch.js
+// ../alpine/packages/alpinejs/src/utils/dispatch.js
 function dispatch2(el, name, detail = {}) {
   el.dispatchEvent(new CustomEvent(name, {
     detail,
@@ -8051,7 +8052,7 @@ function dispatch2(el, name, detail = {}) {
   }));
 }
 
-// node_modules/alpinejs/src/utils/walk.js
+// ../alpine/packages/alpinejs/src/utils/walk.js
 function walk(el, callback) {
   if (typeof ShadowRoot === "function" && el instanceof ShadowRoot) {
     Array.from(el.children).forEach((el2) => walk(el2, callback));
@@ -8068,12 +8069,12 @@ function walk(el, callback) {
   }
 }
 
-// node_modules/alpinejs/src/utils/warn.js
+// ../alpine/packages/alpinejs/src/utils/warn.js
 function warn(message, ...args) {
   console.warn(`Alpine Warning: ${message}`, ...args);
 }
 
-// node_modules/alpinejs/src/lifecycle.js
+// ../alpine/packages/alpinejs/src/lifecycle.js
 var started = false;
 function start() {
   if (started)
@@ -8180,7 +8181,7 @@ function warnAboutMissingPlugins() {
   });
 }
 
-// node_modules/alpinejs/src/nextTick.js
+// ../alpine/packages/alpinejs/src/nextTick.js
 var tickStack = [];
 var isHolding = false;
 function nextTick(callback = () => {
@@ -8206,7 +8207,7 @@ function holdNextTicks() {
   isHolding = true;
 }
 
-// node_modules/alpinejs/src/utils/classes.js
+// ../alpine/packages/alpinejs/src/utils/classes.js
 function setClasses(el, value) {
   if (Array.isArray(value)) {
     return setClassesFromString(el, value.join(" "));
@@ -8253,7 +8254,7 @@ function setClassesFromObject(el, classObject) {
   };
 }
 
-// node_modules/alpinejs/src/utils/styles.js
+// ../alpine/packages/alpinejs/src/utils/styles.js
 function setStyles(el, value) {
   if (typeof value === "object" && value !== null) {
     return setStylesFromObject(el, value);
@@ -8289,7 +8290,7 @@ function kebabCase(subject) {
   return subject.replace(/([a-z])([A-Z])/g, "$1-$2").toLowerCase();
 }
 
-// node_modules/alpinejs/src/utils/once.js
+// ../alpine/packages/alpinejs/src/utils/once.js
 function once(callback, fallback2 = () => {
 }) {
   let called = false;
@@ -8303,7 +8304,7 @@ function once(callback, fallback2 = () => {
   };
 }
 
-// node_modules/alpinejs/src/directives/x-transition.js
+// ../alpine/packages/alpinejs/src/directives/x-transition.js
 directive("transition", (el, { value, modifiers, expression }, { evaluate: evaluate2 }) => {
   if (typeof expression === "function")
     expression = evaluate2(expression);
@@ -8580,7 +8581,7 @@ function modifierValue(modifiers, key, fallback2) {
   return rawValue;
 }
 
-// node_modules/alpinejs/src/clone.js
+// ../alpine/packages/alpinejs/src/clone.js
 var isCloning = false;
 function skipDuringClone(callback, fallback2 = () => {
 }) {
@@ -8640,7 +8641,7 @@ function dontRegisterReactiveSideEffects(callback) {
   overrideEffect(cache);
 }
 
-// node_modules/alpinejs/src/interceptor.js
+// ../alpine/packages/alpinejs/src/interceptor.js
 function initInterceptors2(data2) {
   let isObject2 = (val) => typeof val === "object" && !Array.isArray(val) && val !== null;
   let recurse = (obj, basePath = "") => {
@@ -8705,7 +8706,7 @@ function set(obj, path, value) {
   }
 }
 
-// node_modules/alpinejs/src/utils/bind.js
+// ../alpine/packages/alpinejs/src/utils/bind.js
 var booleanAttributes = /* @__PURE__ */ new Set([
   "allowfullscreen",
   "async",
@@ -8767,7 +8768,7 @@ function getAttributeBinding(el, name, fallback2) {
   return attr;
 }
 
-// node_modules/alpinejs/src/utils/debounce.js
+// ../alpine/packages/alpinejs/src/utils/debounce.js
 function debounce(func, wait) {
   var timeout;
   return function() {
@@ -8781,7 +8782,7 @@ function debounce(func, wait) {
   };
 }
 
-// node_modules/alpinejs/src/utils/throttle.js
+// ../alpine/packages/alpinejs/src/utils/throttle.js
 function throttle(func, limit) {
   let inThrottle;
   return function() {
@@ -8794,7 +8795,7 @@ function throttle(func, limit) {
   };
 }
 
-// node_modules/alpinejs/src/entangle.js
+// ../alpine/packages/alpinejs/src/entangle.js
 function entangle({ get: outerGet, set: outerSet }, { get: innerGet, set: innerSet }) {
   let firstRun = true;
   let outerHash;
@@ -8826,13 +8827,13 @@ function cloneIfObject(value) {
   return typeof value === "object" ? JSON.parse(JSON.stringify(value)) : value;
 }
 
-// node_modules/alpinejs/src/plugin.js
+// ../alpine/packages/alpinejs/src/plugin.js
 function plugin(callback) {
   let callbacks = Array.isArray(callback) ? callback : [callback];
   callbacks.forEach((i) => i(alpine_default));
 }
 
-// node_modules/alpinejs/src/store.js
+// ../alpine/packages/alpinejs/src/store.js
 var stores = {};
 var isReactive = false;
 function store(name, value) {
@@ -8850,7 +8851,7 @@ function store(name, value) {
   }
 }
 
-// node_modules/alpinejs/src/binds.js
+// ../alpine/packages/alpinejs/src/binds.js
 var binds = {};
 function bind(name, bindings) {
   let getBindings = typeof bindings !== "function" ? () => bindings : bindings;
@@ -8887,13 +8888,13 @@ function applyBindingsObject(el, obj, original) {
   };
 }
 
-// node_modules/alpinejs/src/datas.js
+// ../alpine/packages/alpinejs/src/datas.js
 var datas = {};
 function data(name, callback) {
   datas[name] = callback;
 }
 
-// node_modules/alpinejs/src/alpine.js
+// ../alpine/packages/alpinejs/src/alpine.js
 var Alpine2 = {
   get reactive() {
     return reactive;
@@ -8962,7 +8963,7 @@ var Alpine2 = {
 };
 var alpine_default = Alpine2;
 
-// node_modules/alpinejs/src/directives.js
+// ../alpine/packages/alpinejs/src/directives.js
 var prefixAsString = "x-";
 function prefix(subject = "") {
   return prefixAsString + subject;
@@ -9121,49 +9122,13 @@ function byPriority(a, b) {
   return directiveOrder.indexOf(typeA) - directiveOrder.indexOf(typeB);
 }
 
-// node_modules/alpinejs/src/magics.js
+// ../alpine/packages/alpinejs/src/magics.js
 var magics = {};
 function magic(name, callback) {
   magics[name] = callback;
 }
-function injectMagics(obj, el) {
-  let memoizedUtilities = getUtilities(el);
-  Object.entries(magics).forEach(([name, callback]) => {
-    Object.defineProperty(obj, `$${name}`, {
-      get() {
-        return callback(el, memoizedUtilities);
-      },
-      enumerable: false
-    });
-  });
-  return obj;
-}
-function getUtilities(el) {
-  let [utilities, cleanup] = getElementBoundUtilities(el);
-  let utils = { interceptor, ...utilities };
-  onElRemoved(el, cleanup);
-  return utils;
-}
 
-// node_modules/alpinejs/src/utils/error.js
-function tryCatch(el, expression, callback, ...args) {
-  try {
-    return callback(...args);
-  } catch (e) {
-    handleError(e, el, expression);
-  }
-}
-function handleError(error2, el, expression = void 0) {
-  error2 = Object.assign(error2 ?? { message: "No error message given." }, { el, expression });
-  console.warn(`Alpine Expression Error: ${error2.message}
-
-${expression ? 'Expression: "' + expression + '"\n\n' : ""}`, el);
-  setTimeout(() => {
-    throw error2;
-  }, 0);
-}
-
-// node_modules/alpinejs/src/evaluator.js
+// ../alpine/packages/alpinejs/src/evaluator.js
 var shouldAutoEvaluateFunctions = true;
 function dontAutoEvaluateFunctions(callback) {
   let cache = shouldAutoEvaluateFunctions;
@@ -9180,81 +9145,10 @@ function evaluate(el, expression, extras = {}) {
 function evaluateLater(...args) {
   return theEvaluatorFunction(...args);
 }
-var theEvaluatorFunction = normalEvaluator;
+var theEvaluatorFunction = () => {
+};
 function setEvaluator(newEvaluator) {
   theEvaluatorFunction = newEvaluator;
-}
-function normalEvaluator(el, expression) {
-  let overriddenMagics = {};
-  injectMagics(overriddenMagics, el);
-  let dataStack = [overriddenMagics, ...closestDataStack(el)];
-  let evaluator = typeof expression === "function" ? generateEvaluatorFromFunction(dataStack, expression) : generateEvaluatorFromString(dataStack, expression, el);
-  return tryCatch.bind(null, el, expression, evaluator);
-}
-function generateEvaluatorFromFunction(dataStack, func) {
-  return (receiver = () => {
-  }, { scope: scope2 = {}, params = [] } = {}) => {
-    let result = func.apply(mergeProxies([scope2, ...dataStack]), params);
-    runIfTypeOfFunction(receiver, result);
-  };
-}
-var evaluatorMemo = {};
-function generateFunctionFromString(expression, el) {
-  if (evaluatorMemo[expression]) {
-    return evaluatorMemo[expression];
-  }
-  let AsyncFunction = Object.getPrototypeOf(async function() {
-  }).constructor;
-  let rightSideSafeExpression = /^[\n\s]*if.*\(.*\)/.test(expression.trim()) || /^(let|const)\s/.test(expression.trim()) ? `(async()=>{ ${expression} })()` : expression;
-  const safeAsyncFunction = () => {
-    try {
-      let func2 = new AsyncFunction(["__self", "scope"], `with (scope) { __self.result = ${rightSideSafeExpression} }; __self.finished = true; return __self.result;`);
-      Object.defineProperty(func2, "name", {
-        value: `[Alpine] ${expression}`
-      });
-      return func2;
-    } catch (error2) {
-      handleError(error2, el, expression);
-      return Promise.resolve();
-    }
-  };
-  let func = safeAsyncFunction();
-  evaluatorMemo[expression] = func;
-  return func;
-}
-function generateEvaluatorFromString(dataStack, expression, el) {
-  let func = generateFunctionFromString(expression, el);
-  return (receiver = () => {
-  }, { scope: scope2 = {}, params = [] } = {}) => {
-    func.result = void 0;
-    func.finished = false;
-    let completeScope = mergeProxies([scope2, ...dataStack]);
-    if (typeof func === "function") {
-      let promise = func(func, completeScope).catch((error2) => handleError(error2, el, expression));
-      if (func.finished) {
-        runIfTypeOfFunction(receiver, func.result, completeScope, params, el);
-        func.result = void 0;
-      } else {
-        promise.then((result) => {
-          runIfTypeOfFunction(receiver, result, completeScope, params, el);
-        }).catch((error2) => handleError(error2, el, expression)).finally(() => func.result = void 0);
-      }
-    }
-  };
-}
-function runIfTypeOfFunction(receiver, value, scope2, params, el) {
-  if (shouldAutoEvaluateFunctions && typeof value === "function") {
-    let result = value.apply(scope2, params);
-    if (result instanceof Promise) {
-      result.then((i) => runIfTypeOfFunction(receiver, i, scope2, params)).catch((error2) => handleError(error2, el, value));
-    } else {
-      receiver(result);
-    }
-  } else if (typeof value === "object" && value instanceof Promise) {
-    value.then((i) => receiver(i));
-  } else {
-    receiver(value);
-  }
 }
 
 // js/alpine.js
