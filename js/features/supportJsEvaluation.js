@@ -1,6 +1,6 @@
 import { overrideMethod } from '@/$wire'
 import { on } from '@/hooks'
-import Alpine from 'alpinejs'
+import Alpine from '@/alpine'
 
 on('effect', ({ component, effects }) => {
     let js = effects.js

@@ -1,5 +1,5 @@
 import { on } from '@/hooks'
-import Alpine from 'alpinejs'
+import Alpine from '@/alpine'
 
 let executedScripts = new WeakMap
 

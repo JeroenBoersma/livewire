@@ -20,10 +20,31 @@ build({
     define: { CDN: true },
 })
 
+build({
+    entryPoints: [`js/csp/index.js`],
+    outfile: `dist/livewire-csp.js`,
+    bundle: true,
+    platform: 'browser',
+    define: { CDN: true },
+})
+
+build({
+    format: 'esm',
+    entryPoints: [`js/csp/index.js`],
+    outfile: `dist/livewire-csp.esm.js`,
+    sourcemap: 'linked',
+    bundle: true,
+    platform: 'node',
+    define: { CDN: true },
+})
+
 let hash = crypto.randomBytes(4).toString('hex');
 
 fs.writeFileSync(__dirname+'/../dist/manifest.json', `
-{"/livewire.js":"${hash}"}
+{
+  "/livewire.js":"${hash}",
+  "/livewire-csp.js":"${hash}"
+}
 `)
 
 // Build a minified version.
@@ -37,6 +58,17 @@ build({
     define: { CDN: true },
 }).then(() => {
     outputSize(`dist/livewire.min.js`)
+})
+build({
+    entryPoints: [`js/csp/index.js`],
+    outfile: `dist/livewire-csp.min.js`,
+    sourcemap: 'linked',
+    bundle: true,
+    minify: true,
+    platform: 'browser',
+    define: { CDN: true },
+}).then(() => {
+    outputSize(`dist/livewire-csp.min.js`)
 })
 
 function build(options) {
@@ -54,7 +86,7 @@ function build(options) {
 function outputSize(file) {
     let size = bytesToSize(brotliSize.sync(fs.readFileSync(file)))
 
-    console.log("\x1b[32m", `Bundle size: ${size}`)
+    console.log("\x1b[32m", `Bundle size ${file}: ${size}`)
 }
 
 function bytesToSize(bytes) {

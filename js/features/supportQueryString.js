@@ -1,6 +1,6 @@
 import { on } from '@/hooks'
 import { dataGet } from '@/utils'
-import Alpine from 'alpinejs'
+import Alpine from '@/alpine'
 import { track } from '@/plugins/history'
 
 on('effect', ({ component, effects, cleanup }) => {
