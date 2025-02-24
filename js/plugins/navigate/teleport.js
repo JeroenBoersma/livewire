@@ -1,4 +1,4 @@
-import Alpine from "alpinejs"
+import Alpine from "@/alpine"
 
 export function packUpPersistedTeleports(persistedEl) {
     // Persisted elements get removed from the DOM and then re-added later. We need to do the same

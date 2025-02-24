@@ -1,7 +1,7 @@
-import {Livewire, Alpine} from '../index'
-import {setCspEvaluator} from '../alpine'
+import {Livewire, Alpine} from '../livewire'
+import {cspEvaluator} from '@alpinejs/csp/src/evaluator'
 
-setCspEvaluator()
+Alpine.setEvaluator(cspEvaluator)
 
 export {Livewire, Alpine}
 
