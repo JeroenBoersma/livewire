@@ -1,6 +1,7 @@
 let fs = require('fs')
 let brotliSize = require('brotli-size')
 let crypto = require('crypto')
+let {getFromPackageDotJson} = require('./utils')
 
 build({
     entryPoints: [`js/index.js`],
@@ -74,6 +75,7 @@ build({
 function build(options) {
     options.define || (options.define = {})
 
+    options.define['ALPINE_VERSION'] = `'${getFromPackageDotJson('alpinejs', 'version')}'`
     // options.define['LIVEWIRE_VERSION'] = `'${getFromPackageDotJson('alpinejs', 'version')}'`
     options.define['process.env.NODE_ENV'] = process.argv.includes('--watch') ? `'production'` : `'development'`
 
